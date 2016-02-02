@@ -200,9 +200,9 @@ def load_pokemon(db):
 		type1 = None
 		type2 = None
 		for i in range(len(db.get_table("type").rows)):
-			if pkm.type1 is None and pkm.type1.lower() == db.get_table("type").get_cell("type_name", i):
+			if pkm.type1 is not None and pkm.type1.lower() == db.get_table("type").get_cell("type_name", i):
 				type1 = str(db.get_table("type").get_cell("type_code", i))
-			if pkm.type2 is None and pkm.type2.lower() == db.get_table("type").get_cell("type_name", i):
+			if pkm.type2 is not None and pkm.type2.lower() == db.get_table("type").get_cell("type_name", i):
 				type2 = db.get_table("type").get_cell("type_code", i)
 
 		# Commit pokemon object to table
