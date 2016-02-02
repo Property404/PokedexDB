@@ -1,0 +1,6 @@
+*.exe
+*.pyc
+*.xml
+*.html
+*.txt
+*.cache

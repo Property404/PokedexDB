@@ -1,3 +1,8 @@
+#########################################
+#              pokemon.py               #
+#     Non-generic data structures       #
+#########################################
+
 class Pokemon:
 	def __init__(self, name = None, page = None, number=None, raw_name = None):
 		self.number = number

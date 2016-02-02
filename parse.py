@@ -1,3 +1,8 @@
+#########################################
+#              database.py              #
+#   Contains parse-specific functions   #
+#########################################
+
 # Separated infobox from html
 def get_infobox(html):
 	infobox = html[html.find("mon Infobox|" if "mon Infobox|" in html else "mon Infobox |" if "mon Infobox |" in html else "mon Infobox\n|")::]

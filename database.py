@@ -1,4 +1,11 @@
-# Table column
+#########################################
+#              database.py              #
+# Contains classes related to database  #
+#               structure               #
+#########################################
+
+
+# Column of a table
 class Column:	
 	# constructor
 	def __init__(self, name, type, pk=None, fk=None, relation=None, hidden = None, not_null = None):
@@ -16,8 +23,7 @@ class Column:
 		if self.pk:
 			self.not_null = True
 		
-
-
+# Table of a database
 class Table(object):
 	# Constructor
 	def __init__(self, name):
@@ -114,8 +120,16 @@ cell {border: 1px solid black; display: table-cell; }
 			commands+="CREATE TABLE IF NOT EXISTS `"+i.name+"`("
 			
 			# Add column names
+			f_keys = [] # foreign key list
 			for j in i.columns:
-				commands+="`"+j.name+"` "+j.type+(" NOT NULL" if j.not_null else "")+(" PRIMARY KEY" if j.pk else "")+(" REFERENCES {0}({1})".format(j.relation,self.get_table(j.relation).columns[0].name) if j.fk else "")+","
+				commands+="`"+j.name+"` "+j.type+(" NOT NULL" if j.not_null else "")+(" PRIMARY KEY" if j.pk else "")+","
+				# Add to foreign key list
+				if j.fk:
+					f_keys.append(j)
+			
+			# Add foreign keys
+			for j in f_keys:
+				commands+="FOREIGN KEY {0}({1}) REFERENCES {2}({3}) ON UPDATE CASCADE ON DELETE RESTRICT,".format("fk_{0}_{1}".format(i.name,j.name),j.name,j.relation,self.get_table(j.relation).columns[0].name)
 			commands=commands[0:-1]+");\n"
 			
 			# Insert in all rows
