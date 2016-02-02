@@ -3,8 +3,9 @@
 #     Non-generic data structures       #
 #########################################
 
+
 class Pokemon:
-	def __init__(self, name = None, page = None, number=None, raw_name = None):
+	def __init__(self, name=None, page=None, number=None, raw_name=None):
 		self.number = number
 		self.name = name
 		self.raw_name = raw_name
@@ -14,10 +15,10 @@ class Pokemon:
 		self.weight = None
 		self.moves = []
 
+
 class Move:
-	def __init__(self, name = None, type = None, category = None, condition = None):
+	def __init__(self, name=None, type=None, category=None, condition=None):
 		self.name = name
 		self.type = type
 		self.category = category
 		self.condition = condition
-		
