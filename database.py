@@ -8,7 +8,7 @@
 # Column of a table
 class Column:	
 	# constructor
-	def __init__(self, name, datatype, pk=None, fk=None, relation=None, not_null=None):
+	def __init__(self, name, datatype, pk=None, fk=None, relation=None, not_null=None, unique=None):
 		# General column info
 		self.name = name
 		self.datatype = datatype  # e.g VARCHAR, int, float
@@ -19,9 +19,11 @@ class Column:
 		self.relation = relation
 
 		# Default
-		self.not_null = False if not_null is None else not_null
+		self.not_null = True if not_null is None else not_null
+		self.unique = False if unique is None else unique
 		if self.pk:
 			self.not_null = True
+			self.unique = True
 
 
 # Table of a database
@@ -77,19 +79,28 @@ class Database:
 
 			# Add column names
 			f_keys = []  # foreign key list
+			p_keys = []  # primary key list
 			for j in i.columns:
-				commands += "`"+j.name+"` "+j.datatype+(" NOT NULL" if j.not_null else "")\
-							+ (" PRIMARY KEY" if j.pk else "")+","
+				commands += "`{0}` {1}{2}{3},".format(j.name, j.datatype, (" NOT NULL" if j.not_null else ""),
+													  (" UNIQUE" if j.unique else ""))
 				# Add to foreign key list
 				if j.fk:
 					f_keys.append(j)
+				if j.pk:
+					p_keys.append(j)
+
 
 			# Add foreign keys
 			for j in f_keys:
 				commands += "FOREIGN KEY {0}({1}) REFERENCES {2}({3}) ON UPDATE CASCADE ON DELETE RESTRICT,".\
 					format("fk_{0}_{1}".format(i.name, j.name), j.name, j.relation,
 						   self.get_table(j.relation).columns[0].name)
-			commands = commands[0:-1]+");\n"
+
+			# Add primary key
+			commands += "PRIMARY KEY("
+			for j in p_keys:
+				commands += j.name + ","
+			commands = commands[0:-1]+"));\n\n"
 
 			# Insert in all rows
 			commands += "INSERT INTO `{0}` (`{1}`) VALUES ".format(i.name, "`,`".join(k.name for k in i.columns))
@@ -98,5 +109,5 @@ class Database:
 			for j in i.rows:
 				commands += "({0}),".format(",".join(("'"+k.replace("'", "''")+"'" if isinstance(k, str)
 													 else ("'"+str(k)+"'" if k is not None else "NULL")) for k in j))
-			commands = commands[0:-1]+";\n"
+			commands = commands[0:-1]+";\n\n"
 		return commands

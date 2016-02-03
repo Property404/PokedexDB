@@ -1,6 +1,9 @@
-*.exe
+*.cpython-34
 *.pyc
 *.xml
 *.html
 *.txt
+*.sql
 *.cache
+*.name
+*.iml

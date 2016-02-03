@@ -5,10 +5,9 @@
 
 
 class Pokemon:
-	def __init__(self, name=None, page=None, number=None, raw_name=None):
+	def __init__(self, name=None, page=None, number=None):
 		self.number = number
 		self.name = name
-		self.raw_name = raw_name
 		self.type1 = None
 		self.type2 = None
 		self.page = page

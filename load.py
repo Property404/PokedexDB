@@ -22,7 +22,7 @@ def load_types(db):
 	# Set up columns
 	type_table.set_columns([
 		database.Column("type_code", "int", pk=True),
-		database.Column("type_name", "varchar(255)", not_null=True)
+		database.Column("type_name", "varchar(255)", not_null=True, unique=True)
 		])
 
 	# List types
@@ -89,7 +89,7 @@ def load_moves(db):
 	move_table = database.Table("move")
 	move_table.set_columns(
 		[database.Column("move_code", "int", pk=True),
-			database.Column("move_name", "varchar(255)", not_null=True),
+			database.Column("move_name", "varchar(255)", not_null=True, unique=True),
 			database.Column("move_category", "varchar(255)"),
 			database.Column("move_condition", "varchar(255)"),
 			database.Column("type_code", "int", fk=True, relation="type", not_null=True)])
@@ -184,11 +184,11 @@ def load_pokemon(db):
 		database.Column("pkm_name", "varchar(255)", not_null=True),
 		database.Column("pkm_weight", "float"),
 		database.Column("type_code_1", "int", fk=True, relation="type", not_null=True),
-		database.Column("type_code_2", "int", fk=True, relation="type", not_null=False)
+		database.Column("type_code_2", "int", fk=True, relation="type", not_null=False),
 		])
 	learnset_table.set_columns([
 		database.Column("learnset_code", "int", pk=True),
-		database.Column("pkm_code", "int", fk=True, not_null=True, relation="pkm"),
+		database.Column("pkm_code", "int", fk=True, relation="pkm", not_null=True),
 		database.Column("move_code", "int", fk=True, relation="move", not_null=True),
 		database.Column("learnset_level", "int")
 		])
