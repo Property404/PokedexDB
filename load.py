@@ -106,7 +106,8 @@ def load_moves(db):
 def load_pokemon(db):
 	# Set up table
 	pkm_table = database.Table("pkm")
-	learnset_table = database.Table("learnset")
+	learnset_table = database.Table("pokemove")
+	poketype_table = database.Table("poketype")
 
 	end_tag = "_(Pok%C3%A9mon)"
 	start_tag = "/wiki/"
@@ -117,6 +118,7 @@ def load_pokemon(db):
 
 	# Loop through list of pokemon
 	pkm_list = []
+	print("Looping through pokemon")
 	while len(pkm_list) < NO_OF_POKEMON:
 		# First and last part of the URL
 		last = main_page.find(end_tag)
@@ -134,6 +136,7 @@ def load_pokemon(db):
 											page=BULBAPEDIA+"w/index.php?title="+pkm_name+end_tag+"&action=edit"))
 
 	# Gather information on pokemon
+	print("Gathering info on pokemon")
 	for pkm in pkm_list:
 		page = webcache.get_page(pkm.page)
 
@@ -143,7 +146,7 @@ def load_pokemon(db):
 		# Get types
 		pkm.type1 = parse.get_from_infobox("type1", infobox)
 		pkm.type2 = parse.get_from_infobox("type2", infobox)
-
+		
 		# Get weight
 		pkm.weight = parse.get_from_infobox("weight-kg", infobox)
 
@@ -179,23 +182,29 @@ def load_pokemon(db):
 			pkm.moves.append([up_move_no, up_level])
 
 	# Set up columns
+	print("Setting up columns in `pkm`")
 	pkm_table.set_columns([
 		database.Column("pkm_code", "int", pk=True),
 		database.Column("pkm_name", "varchar(255)", not_null=True),
 		database.Column("pkm_weight", "float"),
-		database.Column("type_code_1", "int", fk=True, relation="type", not_null=True),
-		database.Column("type_code_2", "int", fk=True, relation="type", not_null=False),
+		database.Column("evolution_code", "int", not_null=False, fk=True, relation="pkm")
 		])
 	learnset_table.set_columns([
-		database.Column("learnset_code", "int", pk=True),
-		database.Column("pkm_code", "int", fk=True, relation="pkm", not_null=True),
-		database.Column("move_code", "int", fk=True, relation="move", not_null=True),
-		database.Column("learnset_level", "int")
+		database.Column("pkm_code", "int", pk=True, fk=True, relation="pkm", not_null=True),
+		database.Column("move_code", "int", pk=True, fk=True, relation="move", not_null=True),
+		database.Column("pokemove_level", "int")
+		])
+	poketype_table.set_columns([
+		database.Column("pkm_code", "int", pk=True, fk=True, relation="pkm"),
+		database.Column("type_code", "int", pk=True, fk=True, relation="type"),
+		database.Column("poketype_is_primary","boolean", not_null=True)
 		])
 
+		
 	# Enter rows into table:
 	learnset_number = 0
 	for pkm in pkm_list:
+		#print(pkm.name)
 		# Relate Types
 		type1 = None
 		type2 = None
@@ -206,11 +215,22 @@ def load_pokemon(db):
 				type2 = db.get_table("type").get_cell("type_code", i)
 
 		# Commit pokemon object to table
-		pkm_table.add_row([pkm.number, pkm.name, str(pkm.weight), type1, type2])
-
+		pkm_table.add_row([pkm.number, pkm.name, str(pkm.weight), None])
+		poketype_table.add_row([pkm.number,type1, 1])
+		
+		# Commit pokemon type to table
+		if type2 is not None and type1!=type2:
+			poketype_table.add_row([pkm.number,type2, 0])
+		
+		# Commit pokemon moves to table
+		learnset_keys = []
 		for j in pkm.moves:
 			learnset_number += 1
-			learnset_table.add_row([learnset_number, pkm.number, j[0], j[1]])
-
+			#include some code to deal with multiple codes
+			if str(pkm.number)+str(j[0]) not in learnset_keys:
+				learnset_table.add_row([pkm.number, j[0], j[1]])
+				learnset_keys.append(str(pkm.number)+str(j[0]))
+		
 	db.add_table(pkm_table)
 	db.add_table(learnset_table)
+	db.add_table(poketype_table)

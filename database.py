@@ -23,7 +23,6 @@ class Column:
 		self.unique = False if unique is None else unique
 		if self.pk:
 			self.not_null = True
-			self.unique = True
 
 
 # Table of a database
