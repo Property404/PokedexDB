@@ -6,12 +6,12 @@
 import database
 import pokemon
 import parse
-import format
 import webcache
 
 # Constants
 BULBAPEDIA = "http://bulbapedia.bulbagarden.net/"
 NO_OF_POKEMON = 721
+DESCRIPTION_LENGTH = 1280
 
 
 # Load type table
@@ -22,7 +22,7 @@ def load_types(db):
 	# Set up columns
 	type_table.set_columns([
 		database.Column("type_code", "int", pk=True),
-		database.Column("type_name", "varchar(255)", not_null=True, unique=True)
+		database.Column("type_name", "varchar(32)", not_null=True, unique=True)
 		])
 
 	# List types
@@ -62,7 +62,7 @@ def load_moves(db):
 		move_box = move_box[0:move_box.find(end_note)]
 
 		# Create Move object
-		move = pokemon.Move(name=format.format_move_name(move_box[0:move_box.find("}")]))
+		move = pokemon.Move(name=parse.format_move_name(move_box[0:move_box.find("}")]))
 
 		# Get type
 		move.type = move_box[move_box.find("typetable|")+10::]
@@ -89,9 +89,9 @@ def load_moves(db):
 	move_table = database.Table("move")
 	move_table.set_columns(
 		[database.Column("move_code", "int", pk=True),
-			database.Column("move_name", "varchar(255)", not_null=True, unique=True),
-			database.Column("move_category", "varchar(255)"),
-			database.Column("move_condition", "varchar(255)"),
+			database.Column("move_name", "varchar(32)", not_null=True, unique=True),
+			database.Column("move_category", "varchar(32)", not_null=True),
+			database.Column("move_condition", "varchar(32)", not_null=True),
 			database.Column("type_code", "int", fk=True, relation="type", not_null=True)])
 
 	# Load rows
@@ -126,13 +126,13 @@ def load_pokemon(db):
 
 		# Get name
 		pkm_name = main_page[first+len(start_tag):last]
-
+		
 		# Update page
 		main_page = main_page[last+len(end_tag)::]
 
 		# Add to list
-		if len(pkm_list) == 0 or pkm_list[-1].name != format.format_pokemon_name(pkm_name):
-			pkm_list.append(pokemon.Pokemon(number=len(pkm_list)+1, name=format.format_pokemon_name(pkm_name),
+		if len(pkm_list) == 0 or pkm_list[-1].name != parse.format_pokemon_name(pkm_name):
+			pkm_list.append(pokemon.Pokemon(number=len(pkm_list)+1, name=parse.format_pokemon_name(pkm_name),
 											page=BULBAPEDIA+"w/index.php?title="+pkm_name+end_tag+"&action=edit"))
 
 	# Gather information on pokemon
@@ -149,7 +149,29 @@ def load_pokemon(db):
 		
 		# Get weight
 		pkm.weight = parse.get_from_infobox("weight-kg", infobox)
-
+		
+		# Get description
+		pkm.description = page[page.find("==Biology==")+12::];
+		pkm.description = parse.re.sub(r"\[\[File:.*?]][\s\n]*",r"",pkm.description,parse.re.MULTILINE)
+		pkm.description = parse.re.sub(r"^\s*\n*\s*",r"",pkm.description)
+		if "=" in pkm.description:
+			pkm.description = pkm.description[0:pkm.description.find("==")]
+		if "\n\n" in pkm.description:
+			pkm.description = pkm.description[0:pkm.description.find("\n\n")];
+		for n in range(2):
+			pkm.description = parse.re.sub(r"\[\[File:.*?]][\s\n]*",r"",pkm.description)
+			pkm.description = parse.re.sub(r"\[\[([^\]]*\|)*(.*?)]]",r"\2",pkm.description)
+			pkm.description = parse.re.sub(r"\{\{([^\}]*\|)*(.*?)}}",r"\2",pkm.description)
+			pkm.description = parse.re.sub(r"&lt;ref>.*?&lt;/ref>",r"",pkm.description)
+			pkm.description = parse.re.sub(r"&lt;!--.*?-->",r"",pkm.description)
+			pkm.description = parse.re.sub(r"&lt;gallery>\n*(.*\n*)*?&lt;/gallery>",r"",pkm.description,parse.re.MULTILINE)
+		#pkm.description = parse.re.sub(r"^\s*\n*\s*",r"",pkm.description)
+		if "]]" in pkm.description:
+			pkm.description = pkm.description[pkm.description.find("]]")+2::];
+		
+		if len(pkm.description)>=DESCRIPTION_LENGTH:
+			print("Description exceeds description length: "+str(len(pkm.description)))
+		
 		# Prepare to get info on moves
 		learnlist_tag = "{{learnlist/levelVI|"
 		double_up = True
@@ -185,8 +207,9 @@ def load_pokemon(db):
 	print("Setting up columns in `pkm`")
 	pkm_table.set_columns([
 		database.Column("pkm_code", "int", pk=True),
-		database.Column("pkm_name", "varchar(255)", not_null=True),
-		database.Column("pkm_weight", "float"),
+		database.Column("pkm_name", "varchar(32)", not_null=True, character_set="utf16", collate="utf16_unicode_ci",unique=True),
+		database.Column("pkm_description","varchar({0})".format(DESCRIPTION_LENGTH),character_set="utf16", collate="utf16_unicode_ci", not_null=True),
+		database.Column("pkm_weight", "float", not_null=True),
 		database.Column("evolution_code", "int", not_null=False, fk=True, relation="pkm")
 		])
 	learnset_table.set_columns([
@@ -215,7 +238,7 @@ def load_pokemon(db):
 				type2 = db.get_table("type").get_cell("type_code", i)
 
 		# Commit pokemon object to table
-		pkm_table.add_row([pkm.number, pkm.name, str(pkm.weight), None])
+		pkm_table.add_row([pkm.number, pkm.name, pkm.description, str(pkm.weight), None])
 		poketype_table.add_row([pkm.number,type1, 1])
 		
 		# Commit pokemon type to table

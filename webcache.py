@@ -4,6 +4,7 @@
 #               accessed                #
 #########################################
 import urllib.request
+import urllib.parse
 import os
 
 
@@ -18,27 +19,23 @@ def get_page(url):
 		if url[0:len(i)+3] == i+"://":
 			url = url[len(i)+3::]
 			protocol = i
+			break;
 
 	# Make file path
 	local_path = (containing_folder+url+file_extension).replace("?", "{_QMARK}")
 
 	if os.path.exists(local_path):
 		# Read and return file text
-		return open(local_path).read()
+		return open(local_path, "rb").read().decode("utf16")
 	else:
 		# Get text
-		print(protocol+"://"+url)
-		o_text = urllib.request.urlopen(protocol+"://"+url).read().decode("UTF-8")
-
-		# Remove non-ascii characters
-		text = ""
-		for i in o_text:
-			if ord(i) <= 127:
-				text += i
+		print(url.encode("utf8"));
+		text = urllib.request.urlopen(protocol+"://"+url)
+		text = text.read().decode("utf8")
 
 		# save text
 		fp = open(local_path, 'wb')
-		fp.write(text.encode("UTF-8"))
+		fp.write(text.encode("utf16"))
 		fp.close()
 
 		return text

@@ -13,6 +13,7 @@ class Pokemon:
 		self.page = page
 		self.weight = None
 		self.moves = []
+		self.description = ""
 
 
 class Move:
