@@ -147,17 +147,39 @@ def load_pokemon(db):
 		pkm.type1 = parse.get_from_infobox("type1", infobox)
 		pkm.type2 = parse.get_from_infobox("type2", infobox)
 		
+		"""
+		<hello>buddy<hello>
+		buddy<hello>
+		<hello>buddy
+		"""
+		
+		# Get Category
+		pkm.category = parse.get_from_infobox("category", infobox)
+		if pkm.category is None:
+			pkm.category = parse.get_from_infobox("species", infobox)	
+		if "&lt;" == pkm.category[0:4]:
+			pkm.category = pkm.category[4::]
+			if ">" in pkm.category:
+				pkm.category = pkm.category[pkm.category.find(">")+1::]
+		if "&lt;" in pkm.category:
+			pkm.category = pkm.category[0:pkm.category.find("&lt;")]	
+		while(pkm.category[0]==" "):
+			pkm.category = pkm.category[1::]
+		
 		# Get weight
 		pkm.weight = parse.get_from_infobox("weight-kg", infobox)
 		
 		# Get description
 		pkm.description = page[page.find("==Biology==")+12::];
+		# Modify beginning
 		pkm.description = parse.re.sub(r"\[\[File:.*?]][\s\n]*",r"",pkm.description,parse.re.MULTILINE)
 		pkm.description = parse.re.sub(r"^\s*\n*\s*",r"",pkm.description)
+		# End selection of description at double new lines or double equals
 		if "=" in pkm.description:
 			pkm.description = pkm.description[0:pkm.description.find("==")]
 		if "\n\n" in pkm.description:
 			pkm.description = pkm.description[0:pkm.description.find("\n\n")];
+		# Replace references 
 		for n in range(2):
 			pkm.description = parse.re.sub(r"\[\[File:.*?]][\s\n]*",r"",pkm.description)
 			pkm.description = parse.re.sub(r"\[\[([^\]]*\|)*(.*?)]]",r"\2",pkm.description)
@@ -165,10 +187,16 @@ def load_pokemon(db):
 			pkm.description = parse.re.sub(r"&lt;ref>.*?&lt;/ref>",r"",pkm.description)
 			pkm.description = parse.re.sub(r"&lt;!--.*?-->",r"",pkm.description)
 			pkm.description = parse.re.sub(r"&lt;gallery>\n*(.*\n*)*?&lt;/gallery>",r"",pkm.description,parse.re.MULTILINE)
-		#pkm.description = parse.re.sub(r"^\s*\n*\s*",r"",pkm.description)
+		# Make sure not in a file reference
 		if "]]" in pkm.description:
 			pkm.description = pkm.description[pkm.description.find("]]")+2::];
-		
+		# Modify beginning again
+		while(pkm.description[0] in ["\n"," ","\r"]):
+			pkm.description = pkm.description[1::]
+		# Get rid of anomolies
+		if ("&lt;" in pkm.description):
+			pkm.description = pkm.description[0:pkm.description.find(" &lt;")]
+		# Check description length
 		if len(pkm.description)>=DESCRIPTION_LENGTH:
 			print("Description exceeds description length: "+str(len(pkm.description)))
 		
@@ -208,6 +236,7 @@ def load_pokemon(db):
 	pkm_table.set_columns([
 		database.Column("pkm_code", "int", pk=True),
 		database.Column("pkm_name", "varchar(32)", not_null=True, character_set="utf16", collate="utf16_unicode_ci",unique=True),
+		database.Column("pkm_category", "varchar(32)", not_null=True, character_set="utf16", collate="utf16_unicode_ci", unique=False),
 		database.Column("pkm_description","varchar({0})".format(DESCRIPTION_LENGTH),character_set="utf16", collate="utf16_unicode_ci", not_null=True),
 		database.Column("pkm_weight", "float", not_null=True),
 		database.Column("evolution_code", "int", not_null=False, fk=True, relation="pkm")
@@ -238,7 +267,7 @@ def load_pokemon(db):
 				type2 = db.get_table("type").get_cell("type_code", i)
 
 		# Commit pokemon object to table
-		pkm_table.add_row([pkm.number, pkm.name, pkm.description, str(pkm.weight), None])
+		pkm_table.add_row([pkm.number, pkm.name, pkm.category, pkm.description, str(pkm.weight), None])
 		poketype_table.add_row([pkm.number,type1, 1])
 		
 		# Commit pokemon type to table

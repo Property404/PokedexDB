@@ -18,6 +18,10 @@ def get_from_infobox(attribute, infobox):
 	attribute += "="
 	if attribute in infobox:
 		value = infobox[infobox.find(attribute)+len(attribute)::]
+		if value[0] == "{":
+			value=value[value.find("|")+1::]
+		if value[0:8]=="&lt;!--{":
+			value="&lt;"+value[value.find("|")+1::]
 		return value[0:value.find("|")]
 	else:
 		return None
