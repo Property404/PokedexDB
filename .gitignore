@@ -1,9 +1,6 @@
-*.cpython-34
+__pycache__
+.idea
 *.pyc
 *.xml
-*.html
-*.txt
 *.sql
 *.cache
-*.name
-*.iml

@@ -4,11 +4,11 @@
 #               structure               #
 #########################################
 
-
 # Column of a table
 class Column:	
 	# constructor
-	def __init__(self, name, datatype, pk=None, fk=None, relation=None, not_null=None, unique=None, character_set=None, collate=None):
+	def __init__(self, name, datatype, pk=None, fk=None, relation=None, not_null=None, unique=None, character_set=None,
+				 collate=None):
 		# General column info
 		self.name = name
 		self.datatype = datatype  # e.g VARCHAR, int, float
@@ -60,6 +60,7 @@ class Database:
 		self.name = name
 		self.character_set = character_set
 		self.tables = []
+		self.comment = ""
 
 	# Getters
 	def get_table(self, tname):
@@ -74,11 +75,11 @@ class Database:
 
 	# Export SQL
 	def to_sql(self):
-		commands = ""
+		commands = self.comment
 		# Delete tables
 		for i in self.tables[::-1]:
 			commands += "DROP TABLE IF EXISTS `{0}`;\n\n".format(i.name)
-			
+
 		# Cycle through table
 		for i in self.tables:
 			commands += "CREATE TABLE `{0}`(".format(i.name)
@@ -87,7 +88,7 @@ class Database:
 			f_keys = []  # foreign key list
 			p_keys = []  # primary key list
 			for j in i.columns:
-				commands += "`{0}` {1}{2}{3}{4},".format(j.name, j.datatype, 
+				commands += "`{0}` {1}{2}{3}{4},".format(j.name, j.datatype,
 													  (" CHARACTER SET {0} COLLATE {1}".format(j.character_set,j.collate)
 													  if j.character_set is not None else ""),(" NOT NULL" if j.not_null else ""),
 													  (" UNIQUE" if j.unique else ""))
@@ -96,7 +97,6 @@ class Database:
 					f_keys.append(j)
 				if j.pk:
 					p_keys.append(j)
-
 
 			# Add foreign keys
 			for j in f_keys:
@@ -112,8 +112,9 @@ class Database:
 
 			# Alter table
 			if self.character_set is not None:
-				commands+="ALTER TABLE {0} CHARACTER SET {1} COLLATE utf16_unicode_ci;\n\n".format(i.name, self.character_set)
-			
+				commands += "ALTER TABLE {0} CHARACTER SET {1} COLLATE utf16_unicode_ci;\n\n".\
+					format(i.name, self.character_set)
+
 			# Insert in all rows
 			commands += "INSERT INTO `{0}` (`{1}`) VALUES ".format(i.name, "`,`".join(k.name for k in i.columns))
 

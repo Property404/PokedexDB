@@ -126,7 +126,7 @@ def load_pokemon(db):
 
 		# Get name
 		pkm_name = main_page[first+len(start_tag):last]
-		
+
 		# Update page
 		main_page = main_page[last+len(end_tag)::]
 
@@ -134,6 +134,9 @@ def load_pokemon(db):
 		if len(pkm_list) == 0 or pkm_list[-1].name != parse.format_pokemon_name(pkm_name):
 			pkm_list.append(pokemon.Pokemon(number=len(pkm_list)+1, name=parse.format_pokemon_name(pkm_name),
 											page=BULBAPEDIA+"w/index.php?title="+pkm_name+end_tag+"&action=edit"))
+
+	# Alt name lit
+	altnames = [" Man"]
 
 	# Gather information on pokemon
 	print("Gathering info on pokemon")
@@ -146,60 +149,71 @@ def load_pokemon(db):
 		# Get types
 		pkm.type1 = parse.get_from_infobox("type1", infobox)
 		pkm.type2 = parse.get_from_infobox("type2", infobox)
-		
+
 		"""
 		<hello>buddy<hello>
 		buddy<hello>
 		<hello>buddy
 		"""
-		
+
 		# Get Category
 		pkm.category = parse.get_from_infobox("category", infobox)
 		if pkm.category is None:
-			pkm.category = parse.get_from_infobox("species", infobox)	
+			pkm.category = parse.get_from_infobox("species", infobox)
 		if "&lt;" == pkm.category[0:4]:
 			pkm.category = pkm.category[4::]
 			if ">" in pkm.category:
 				pkm.category = pkm.category[pkm.category.find(">")+1::]
 		if "&lt;" in pkm.category:
-			pkm.category = pkm.category[0:pkm.category.find("&lt;")]	
-		while(pkm.category[0]==" "):
+			pkm.category = pkm.category[0:pkm.category.find("&lt;")]
+		while pkm.category[0] == " ":
 			pkm.category = pkm.category[1::]
-		
+		if pkm.name == "Boldore":  # Because I don't want to spend more time on this
+			pkm.category = "Ore"
+
+		# Get Fun name
+		pkm.altname = pkm.category+" Man"
+		if pkm.altname in altnames:
+			pkm.altname = " Man"
+			while pkm.altname in altnames:
+				pkm.altname = parse.re.findall(r"[^aeiou]*[aeiou]+[^aiousy]*", pkm.name)[0]+pkm.altname
+		altnames.append(pkm.altname)
+
 		# Get weight
 		pkm.weight = parse.get_from_infobox("weight-kg", infobox)
-		
+
 		# Get description
-		pkm.description = page[page.find("==Biology==")+12::];
+		pkm.description = page[page.find("==Biology==")+12::]
 		# Modify beginning
-		pkm.description = parse.re.sub(r"\[\[File:.*?]][\s\n]*",r"",pkm.description,parse.re.MULTILINE)
-		pkm.description = parse.re.sub(r"^\s*\n*\s*",r"",pkm.description)
+		pkm.description = parse.re.sub(r"\[\[File:.*?]][\s\n]*", r"", pkm.description, parse.re.MULTILINE)
+		pkm.description = parse.re.sub(r"^\s*\n*\s*", r"", pkm.description)
 		# End selection of description at double new lines or double equals
 		if "=" in pkm.description:
 			pkm.description = pkm.description[0:pkm.description.find("==")]
 		if "\n\n" in pkm.description:
-			pkm.description = pkm.description[0:pkm.description.find("\n\n")];
-		# Replace references 
+			pkm.description = pkm.description[0:pkm.description.find("\n\n")]
+		# Replace references
 		for n in range(2):
-			pkm.description = parse.re.sub(r"\[\[File:.*?]][\s\n]*",r"",pkm.description)
-			pkm.description = parse.re.sub(r"\[\[([^\]]*\|)*(.*?)]]",r"\2",pkm.description)
-			pkm.description = parse.re.sub(r"\{\{([^\}]*\|)*(.*?)}}",r"\2",pkm.description)
-			pkm.description = parse.re.sub(r"&lt;ref>.*?&lt;/ref>",r"",pkm.description)
-			pkm.description = parse.re.sub(r"&lt;!--.*?-->",r"",pkm.description)
-			pkm.description = parse.re.sub(r"&lt;gallery>\n*(.*\n*)*?&lt;/gallery>",r"",pkm.description,parse.re.MULTILINE)
+			pkm.description = parse.re.sub(r"\[\[File:.*?]][\s\n]*", r"", pkm.description)
+			pkm.description = parse.re.sub(r"\[\[([^\]]*\|)*(.*?)]]", r"\2", pkm.description)
+			pkm.description = parse.re.sub(r"\{\{([^\}]*\|)*(.*?)}}", r"\2", pkm.description)
+			pkm.description = parse.re.sub(r"&lt;ref>.*?&lt;/ref>", r"", pkm.description)
+			pkm.description = parse.re.sub(r"&lt;!--.*?-->", r"", pkm.description)
+			pkm.description = parse.re.sub(r"&lt;gallery>\n*(.*\n*)*?&lt;/gallery>", r"", pkm.description,
+										   parse.re.MULTILINE)
 		# Make sure not in a file reference
 		if "]]" in pkm.description:
-			pkm.description = pkm.description[pkm.description.find("]]")+2::];
+			pkm.description = pkm.description[pkm.description.find("]]")+2::]
 		# Modify beginning again
-		while(pkm.description[0] in ["\n"," ","\r"]):
+		while pkm.description[0] in ["\n", " ", "\r"]:
 			pkm.description = pkm.description[1::]
 		# Get rid of anomolies
-		if ("&lt;" in pkm.description):
+		if "&lt;" in pkm.description:
 			pkm.description = pkm.description[0:pkm.description.find(" &lt;")]
 		# Check description length
-		if len(pkm.description)>=DESCRIPTION_LENGTH:
+		if len(pkm.description) >= DESCRIPTION_LENGTH:
 			print("Description exceeds description length: "+str(len(pkm.description)))
-		
+
 		# Prepare to get info on moves
 		learnlist_tag = "{{learnlist/levelVI|"
 		double_up = True
@@ -219,7 +233,8 @@ def load_pokemon(db):
 
 			# Get move
 			page = page[page.find("|")+1::]
-			up_move = page[0:page.find("|")].replace("Sand-Attack", "Sand Attack")  # This is a generational difference correction
+			# This is a generational difference correction:
+			up_move = page[0:page.find("|")].replace("Sand-Attack", "Sand Attack")
 
 			# Search database for moves:
 			up_move_no = None
@@ -235,9 +250,12 @@ def load_pokemon(db):
 	print("Setting up columns in `pkm`")
 	pkm_table.set_columns([
 		database.Column("pkm_code", "int", pk=True),
-		database.Column("pkm_name", "varchar(32)", not_null=True, character_set="utf16", collate="utf16_unicode_ci",unique=True),
-		database.Column("pkm_category", "varchar(32)", not_null=True, character_set="utf16", collate="utf16_unicode_ci", unique=False),
-		database.Column("pkm_description","varchar({0})".format(DESCRIPTION_LENGTH),character_set="utf16", collate="utf16_unicode_ci", not_null=True),
+		database.Column("pkm_name", "varchar(32)", not_null=True, character_set="utf16",
+						collate="utf16_unicode_ci", unique=True),
+		database.Column("pkm_category", "varchar(32)", not_null=True, character_set="utf16",
+						collate="utf16_unicode_ci", unique=False),
+		database.Column("pkm_description", "varchar({0})".format(DESCRIPTION_LENGTH), character_set="utf16",
+						collate="utf16_unicode_ci", not_null=True),
 		database.Column("pkm_weight", "float", not_null=True),
 		database.Column("evolution_code", "int", not_null=False, fk=True, relation="pkm")
 		])
@@ -249,14 +267,12 @@ def load_pokemon(db):
 	poketype_table.set_columns([
 		database.Column("pkm_code", "int", pk=True, fk=True, relation="pkm"),
 		database.Column("type_code", "int", pk=True, fk=True, relation="type"),
-		database.Column("poketype_is_primary","boolean", not_null=True)
+		database.Column("poketype_is_primary", "boolean", not_null=True)
 		])
 
-		
 	# Enter rows into table:
 	learnset_number = 0
 	for pkm in pkm_list:
-		#print(pkm.name)
 		# Relate Types
 		type1 = None
 		type2 = None
@@ -268,21 +284,21 @@ def load_pokemon(db):
 
 		# Commit pokemon object to table
 		pkm_table.add_row([pkm.number, pkm.name, pkm.category, pkm.description, str(pkm.weight), None])
-		poketype_table.add_row([pkm.number,type1, 1])
-		
+		poketype_table.add_row([pkm.number, type1, 1])
+
 		# Commit pokemon type to table
-		if type2 is not None and type1!=type2:
-			poketype_table.add_row([pkm.number,type2, 0])
-		
+		if type2 is not None and type1 != type2:
+			poketype_table.add_row([pkm.number, type2, 0])
+
 		# Commit pokemon moves to table
 		learnset_keys = []
 		for j in pkm.moves:
 			learnset_number += 1
-			#include some code to deal with multiple codes
+			# include some code to deal with multiple codes
 			if str(pkm.number)+str(j[0]) not in learnset_keys:
 				learnset_table.add_row([pkm.number, j[0], j[1]])
 				learnset_keys.append(str(pkm.number)+str(j[0]))
-		
+
 	db.add_table(pkm_table)
 	db.add_table(learnset_table)
 	db.add_table(poketype_table)

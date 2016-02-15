@@ -19,7 +19,7 @@ def get_page(url):
 		if url[0:len(i)+3] == i+"://":
 			url = url[len(i)+3::]
 			protocol = i
-			break;
+			break
 
 	# Make file path
 	local_path = (containing_folder+url+file_extension).replace("?", "{_QMARK}")
@@ -29,7 +29,7 @@ def get_page(url):
 		return open(local_path, "rb").read().decode("utf16")
 	else:
 		# Get text
-		print(url.encode("utf8"));
+		print(url.encode("utf8"))
 		text = urllib.request.urlopen(protocol+"://"+url)
 		text = text.read().decode("utf8")
 
