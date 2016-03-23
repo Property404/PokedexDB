@@ -1,5 +1,5 @@
-import load
-import database
+#!/usr/bin/env python3
+from pokedex import load, database
 import datetime
 import sys
 
@@ -21,5 +21,5 @@ db.comment = "/*\n\tPokedexDB\n\thttps://github.com/Property404/PokedexDB\n\tGen
 
 # Export SQL
 fp = open("dex.sql", "wb")
-fp.write(db.to_sql().encode("utf16"))
+fp.write(db.to_sql().encode("utf8"))
 fp.close()
