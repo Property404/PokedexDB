@@ -7,7 +7,7 @@ from pokedex import database, pokemon, parse, webcache
 
 # Constants
 BULBAPEDIA = "http://bulbapedia.bulbagarden.net/"
-NO_OF_POKEMON = 31
+NO_OF_POKEMON = 721
 DESCRIPTION_LENGTH = 1280
 
 
