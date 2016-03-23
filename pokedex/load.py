@@ -3,14 +3,11 @@
 #   Module for parsing Bulbapedia and   #
 #       loading data into tables        #
 #########################################
-import database
-import pokemon
-import parse
-import webcache
+from pokedex import database, pokemon, parse, webcache
 
 # Constants
 BULBAPEDIA = "http://bulbapedia.bulbagarden.net/"
-NO_OF_POKEMON = 721
+NO_OF_POKEMON = 31
 DESCRIPTION_LENGTH = 1280
 
 
