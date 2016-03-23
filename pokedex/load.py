@@ -7,7 +7,6 @@ from pokedex import database, pokemon, parse, webcache
 
 # Constants
 BULBAPEDIA = "http://bulbapedia.bulbagarden.net/"
-NO_OF_POKEMON = 721
 DESCRIPTION_LENGTH = 1280
 
 
@@ -100,7 +99,7 @@ def load_moves(db):
 
 
 # Load Pokemon table and associated pokemon moves
-def load_pokemon(db):
+def load_pokemon(db, no_of_pokemon=721):
 	# Set up table
 	pkm_table = database.Table("pkm")
 	learnset_table = database.Table("pokemove")
@@ -116,7 +115,7 @@ def load_pokemon(db):
 	# Loop through list of pokemon
 	pkm_list = []
 	print("Looping through pokemon")
-	while len(pkm_list) < NO_OF_POKEMON:
+	while len(pkm_list) < no_of_pokemon:
 		# First and last part of the URL
 		last = main_page.find(end_tag)
 		first = main_page[0:last].rfind(start_tag)
