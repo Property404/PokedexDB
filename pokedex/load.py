@@ -17,7 +17,7 @@ def load_types(db):
 
 	# Set up columns
 	type_table.set_columns([
-		database.Column("type_code", "int", pk=True),
+		database.Column("type_code", "smallint", pk=True),
 		database.Column("type_name", "varchar(32)", not_null=True, unique=True)
 		])
 
@@ -84,11 +84,11 @@ def load_moves(db):
 	# Create table
 	move_table = database.Table("move")
 	move_table.set_columns(
-		[database.Column("move_code", "int", pk=True),
+		[database.Column("move_code", "smallint", pk=True),
 			database.Column("move_name", "varchar(32)", not_null=True, unique=True),
 			database.Column("move_category", "varchar(32)", not_null=True),
 			database.Column("move_condition", "varchar(32)", not_null=True),
-			database.Column("type_code", "int", fk=True, relation="type", not_null=True)])
+			database.Column("type_code", "smallint", fk=True, relation="type", not_null=True)])
 
 	# Load rows
 	for i in range(len(moves)):
@@ -114,7 +114,7 @@ def load_pokemon(db, no_of_pokemon=721):
 
 	# Loop through list of pokemon
 	pkm_list = []
-	print("Looping through pokemon")
+	print("\tLooping through pokemon")
 	while len(pkm_list) < no_of_pokemon:
 		# First and last part of the URL
 		last = main_page.find(end_tag)
@@ -135,7 +135,7 @@ def load_pokemon(db, no_of_pokemon=721):
 	altnames = [" Man"]
 
 	# Gather information on pokemon
-	print("Gathering info on pokemon")
+	print("\tGathering info on pokemon")
 	for pkm in pkm_list:
 		page = webcache.get_page(pkm.page)
 
@@ -172,7 +172,9 @@ def load_pokemon(db, no_of_pokemon=721):
 		if pkm.altname in altnames:
 			pkm.altname = " Man"
 			while pkm.altname in altnames:
-				pkm.altname = parse.re.findall(r"[^aeiou]*[aeiou]+[^aiousy]*", pkm.name)[0]+pkm.altname
+				pkm.altname=pkm.altname[0].lower()+pkm.altname[1::]
+				pkm.altname = parse.re.findall(r"[^aeiou]*[aeiou]+[^aiousy]*", pkm.name)[0].lower()+pkm.altname
+				pkm.altname=pkm.altname[0].upper()+pkm.altname[1::]
 		altnames.append(pkm.altname)
 
 		# Get weight
@@ -208,7 +210,7 @@ def load_pokemon(db, no_of_pokemon=721):
 			pkm.description = pkm.description[0:pkm.description.find(" &lt;")]
 		# Check description length
 		if len(pkm.description) >= DESCRIPTION_LENGTH:
-			print("Description exceeds description length: "+str(len(pkm.description)))
+			print("\tDescription exceeds description length: "+str(len(pkm.description)))
 
 		# Prepare to get info on moves
 		learnlist_tag = "{{learnlist/levelVI|"
@@ -239,13 +241,13 @@ def load_pokemon(db, no_of_pokemon=721):
 					up_move_no = i+1
 					break
 			if up_move_no is None:
-				print("`" + up_move + "` replaced with NULL")
+				print("\t`" + up_move + "` replaced with NULL")
 			pkm.moves.append([up_move_no, up_level])
 
 	# Set up columns
-	print("Setting up columns in `pkm`")
+	print("\tSetting up columns in `pkm`")
 	pkm_table.set_columns([
-		database.Column("pkm_code", "int", pk=True),
+		database.Column("pkm_code", "smallint", pk=True),
 		database.Column("pkm_name", "varchar(32)", not_null=True, character_set="utf16",
 						collate="utf16_unicode_ci", unique=True),
 		database.Column("pkm_category", "varchar(32)", not_null=True, character_set="utf16",
@@ -253,16 +255,16 @@ def load_pokemon(db, no_of_pokemon=721):
 		database.Column("pkm_description", "varchar({0})".format(DESCRIPTION_LENGTH), character_set="utf16",
 						collate="utf16_unicode_ci", not_null=True),
 		database.Column("pkm_weight", "float", not_null=True),
-		database.Column("evolution_code", "int", not_null=False, fk=True, relation="pkm")
+		database.Column("evolution_code", "smallint", not_null=False, fk=True, relation="pkm")
 		])
 	learnset_table.set_columns([
-		database.Column("pkm_code", "int", pk=True, fk=True, relation="pkm", not_null=True),
-		database.Column("move_code", "int", pk=True, fk=True, relation="move", not_null=True),
-		database.Column("pokemove_level", "int")
+		database.Column("pkm_code", "smallint", pk=True, fk=True, relation="pkm", not_null=True),
+		database.Column("move_code", "smallint", pk=True, fk=True, relation="move", not_null=True),
+		database.Column("pokemove_level", "tinyint")
 		])
 	poketype_table.set_columns([
-		database.Column("pkm_code", "int", pk=True, fk=True, relation="pkm"),
-		database.Column("type_code", "int", pk=True, fk=True, relation="type"),
+		database.Column("pkm_code", "smallint", pk=True, fk=True, relation="pkm"),
+		database.Column("type_code", "smallint", pk=True, fk=True, relation="type"),
 		database.Column("poketype_is_primary", "boolean", not_null=True)
 		])
 

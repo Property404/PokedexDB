@@ -1,7 +1,15 @@
 #!/usr/bin/env python3
+import sys
+
+# Check for Python version
+if sys.version_info < (3,4):
+	print("Requires Python version>=3.4")
+	print("You are using Python "+str(sys.version_info[0])+"."+str(sys.version_info[1]))
+	exit()
+
+# Load other modules
 from pokedex import load, database
 import datetime
-import sys
 
 # Create database object
 db = database.Database("PokeDex")
@@ -32,6 +40,8 @@ db.comment = "/*\n\tPokedexDB\n\thttps://github.com/Property404/PokedexDB\n\tGen
 			 "\n\tPython version " + ".".join([str(i) for i in sys.version_info[0:3]]) + "\n*/\n"
 
 # Export SQL
+print("Exporting to SQL")
 fp = open("dex.sql", "wb")
 fp.write(db.to_sql().encode("utf8"))
 fp.close()
+print("Done!")

@@ -29,7 +29,7 @@ def get_page(url):
 		return open(local_path, "rb").read().decode("utf16")
 	else:
 		# Get text
-		print(url.encode("utf8"))
+		print("\t"+str(url.encode("utf8")))
 		text = urllib.request.urlopen(protocol+"://"+url)
 		text = text.read().decode("utf8")
 
