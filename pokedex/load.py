@@ -99,7 +99,7 @@ def load_moves(db):
 
 
 # Load Pokemon table and associated pokemon moves
-def load_pokemon(db, no_of_pokemon=721):
+def load_pokemon(db, no_of_pokemon=721, use_alt_names=False):
 	# Set up table
 	pkm_table = database.Table("pkm")
 	learnset_table = database.Table("pokemove")
@@ -167,7 +167,7 @@ def load_pokemon(db, no_of_pokemon=721):
 		if pkm.name == "Boldore":  # Because I don't want to spend more time on this
 			pkm.category = "Ore"
 
-		# Get Fun name
+		# Get alternative name
 		pkm.altname = pkm.category+" Man"
 		if pkm.altname in altnames:
 			pkm.altname = " Man"
@@ -281,7 +281,7 @@ def load_pokemon(db, no_of_pokemon=721):
 				type2 = db.get_table("type").get_cell("type_code", i)
 
 		# Commit pokemon object to table
-		pkm_table.add_row([pkm.number, pkm.name, pkm.category, pkm.description, str(pkm.weight), None])
+		pkm_table.add_row([pkm.number, pkm.name if not use_alt_names else pkm.altname, pkm.category, pkm.description, str(pkm.weight), None])
 		poketype_table.add_row([pkm.number, type1, 1])
 
 		# Commit pokemon type to table
