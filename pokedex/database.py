@@ -112,7 +112,7 @@ class Database:
 
 			# Alter table
 			if self.character_set is not None:
-				commands += "ALTER TABLE `{0}` CHARACTER SET {1} COLLATE utf16_unicode_ci;\n\n".\
+				commands += "ALTER TABLE `{0}` CHARACTER SET {1} COLLATE utf8_unicode_ci;\n\n".\
 					format(i.name, self.character_set)
 
 			# Insert in all rows

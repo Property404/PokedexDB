@@ -244,12 +244,8 @@ def load_pokemon(db, no_of_pokemon=721, use_alt_names=False):
 	print("\tSetting up columns in `pkm`")
 	pkm_table.set_columns([
 		database.Column("pkm_code", "smallint", pk=True),
-		database.Column("pkm_name", "varchar(32)", not_null=True, character_set="utf16",
-						collate="utf16_unicode_ci", unique=True),
-		database.Column("pkm_category", "varchar(32)", not_null=True, character_set="utf16",
-						collate="utf16_unicode_ci", unique=False),
-		database.Column("pkm_description", "varchar({0})".format(DESCRIPTION_LENGTH), character_set="utf16",
-						collate="utf16_unicode_ci", not_null=True),
+		database.Column("pkm_name", "varchar(32)", not_null=True, character_set="utf8",	collate="utf8_unicode_ci", unique=True),
+		database.Column("pkm_category", "varchar(32)", not_null=True, character_set="utf8", collate="utf8_unicode_ci", unique=False),database.Column("pkm_description", "varchar({0})".format(DESCRIPTION_LENGTH), character_set="utf8",collate="utf8_unicode_ci", not_null=True),
 		database.Column("pkm_weight", "float", not_null=True),
 		database.Column("evolution_code", "smallint", not_null=False, fk=True, relation="pkm")
 		])
