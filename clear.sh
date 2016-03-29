@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env sh
 # Clear cache file and SQL output
 rm -f dex.sql
 rm -f cache/b*/w/*.cache

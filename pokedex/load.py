@@ -146,12 +146,6 @@ def load_pokemon(db, no_of_pokemon=721, use_alt_names=False):
 		pkm.type1 = parse.get_from_infobox("type1", infobox)
 		pkm.type2 = parse.get_from_infobox("type2", infobox)
 
-		"""
-		<hello>buddy<hello>
-		buddy<hello>
-		<hello>buddy
-		"""
-
 		# Get Category
 		pkm.category = parse.get_from_infobox("category", infobox)
 		if pkm.category is None:
@@ -228,6 +222,8 @@ def load_pokemon(db, no_of_pokemon=721, use_alt_names=False):
 
 			# Get move requirements
 			up_level = page[0:page.find("|")]
+			if up_level=="N/A":
+				continue
 
 			# Get move
 			page = page[page.find("|")+1::]

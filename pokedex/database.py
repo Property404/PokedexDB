@@ -100,8 +100,8 @@ class Database:
 
 			# Add foreign keys
 			for j in f_keys:
-				commands += "FOREIGN KEY {0}({1}) REFERENCES {2}({3}) ON UPDATE CASCADE ON DELETE RESTRICT,".\
-					format("fk_{0}_{1}".format(i.name, j.name), j.name, j.relation,
+				commands += "FOREIGN KEY (`{0}`) REFERENCES `{1}`(`{2}`) ON UPDATE CASCADE ON DELETE RESTRICT,".\
+					format(j.name, j.relation,
 						   self.get_table(j.relation).columns[0].name)
 
 			# Add primary key
@@ -112,7 +112,7 @@ class Database:
 
 			# Alter table
 			if self.character_set is not None:
-				commands += "ALTER TABLE {0} CHARACTER SET {1} COLLATE utf16_unicode_ci;\n\n".\
+				commands += "ALTER TABLE `{0}` CHARACTER SET {1} COLLATE utf16_unicode_ci;\n\n".\
 					format(i.name, self.character_set)
 
 			# Insert in all rows
