@@ -1,0 +1,116 @@
+#!/usr/bin/env bash
+bold=`echo -e 'printf \033[1m'`
+offbold=`echo -e 'printf \033[0m'`
+echo_c()
+{
+    w=$(stty size | cut -d" " -f2) 
+    l=${#1}
+    printf "%"$((l+(w-l)/2))"s\n" "$1"
+}
+
+width=`stty size | cut -d" " -f2`
+i=$(( $width / 2 + 10))
+s=""
+while [ "$i" -le $width ] 
+do
+    s+=" "
+    i=$(( $i + 2))
+done
+
+clear
+$bold
+banner "PokedexDB" | sed "s/^#/$s#/g"
+$offbold
+pokemonsay -p Pikachu -n "Gotta Catch 'em All!"
+echo_c
+$bold
+echo_c "Team Members:"
+$offbold
+echo_c "Dagan Martinez"
+echo_c "Hannah Shryock"
+echo_c "Justin Cushing-Dyment"
+echo_c "Elias Browne"
+echo_c "Nicholas Pellegrino"
+
+read;clear;
+$bold
+banner "PokedexDB" | sed "s/^#/$s#/g"
+$offbold
+echo_c
+printf "\033[1m"
+echo_c "Project:"
+printf "\033[0m"
+echo_c " Create a database of pokemon, moves, types, evolutions, and their relations to each other"
+echo_c
+printf "\033[1m"
+echo_c "Source:"
+printf "\033[0m"
+echo_c "Bulbapedia"
+echo_c 
+printf "\033[1m"
+echo_c "Method:"
+printf "\033[0m"
+echo_c "Parsing. Progmatically generated SQL code"
+echo_c
+printf "\033[1m"
+echo_c "Language:"
+printf "\033[0m"
+echo_c "Python3"
+echo_c
+$bold
+echo_c "Motivation"
+$offbold
+echo_c "Pokemon is cool"
+echo_c
+$bold
+echo_c "End User Questions"
+$offbold
+echo_c "1) List pokemon based on type or weight"
+echo_c "2) Determine pokemon with highest number of moves relating to their primary type"
+echo_c "3) Which pokemon change types when evolved"
+pokemonsay -p Ekans -n "I <3 Python" 
+
+read;clear
+sm="mysql -u root -proot --database pokedex --table"
+echo "show tables;" | $sm
+read
+echo "describe move;" | $sm
+read
+echo "describe pkm;" | $sm
+read
+echo "describe pokemove;" | $sm
+read
+echo "describe poketype;" | $sm
+read
+echo "describe type;" | $sm
+
+read;clear;
+$bold
+banner "ER Diagramn" | sed "s/^#/$s#/g"
+$offbold
+eog ../er_diagram.png
+
+read;clear;
+$bold
+banner "Progress" | sed "s/^#/$s#/g"
+$offbold
+echo_c "* Loaded all 721 pokemon and 621 moves"
+echo_c "* Loaded all relations between pokemon and their moves and types"
+echo_c "* Loaded all types"
+read;clear;
+
+$bold
+banner "Queries" | sed "s/^/$s/g" 
+$offbold
+pokemonsay -p Charmander  -n "Yay!"
+
+read;clear;
+
+cat ../q*/*one*.sql
+$sm < ../q*/*one*.sql
+
+read;clear;
+
+cat ../q*/types.sql
+read;
+$sm < ../q*/types.sql | less
