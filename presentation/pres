@@ -9,7 +9,7 @@ echo_c()
 }
 
 width=`stty size | cut -d" " -f2`
-i=$(( $width / 2 + 10))
+i=$(( $width / 2 + 0))
 s=""
 while [ "$i" -le $width ] 
 do
@@ -30,7 +30,6 @@ echo_c "Dagan Martinez"
 echo_c "Hannah Shryock"
 echo_c "Justin Cushing-Dyment"
 echo_c "Elias Browne"
-echo_c "Nicholas Pellegrino"
 
 read;clear;
 $bold
@@ -72,6 +71,7 @@ pokemonsay -p Ekans -n "I <3 Python"
 
 read;clear
 sm="mysql -u root -proot --database pokedex --table"
+smnt="mysql -u root -proot --database pokedex"
 echo "show tables;" | $sm
 read
 echo "describe move;" | $sm
@@ -93,24 +93,48 @@ eog ../er_diagram.png
 read;clear;
 $bold
 banner "Progress" | sed "s/^#/$s#/g"
+echo_c
+echo_c "Done"
 $offbold
 echo_c "* Loaded all 721 pokemon and 621 moves"
 echo_c "* Loaded all relations between pokemon and their moves and types"
 echo_c "* Loaded all types"
+echo_c
+$bold
+echo_c "Not Done"
+$offbold
+echo_c "* Write evolution parser and SQL code generator"
+echo_c "* Write end-user queries"
+pokemonsay  "I'm the reason Dagan spent way too many hours dealing with Unicode! Go Me!" -p `python -c "import sys;print(sys.argv[1].split('\n')[0])" \`pokemonsay -l | grep Nidoran\``
+
 read;clear;
 
 $bold
 banner "Queries" | sed "s/^/$s/g" 
 $offbold
-pokemonsay -p Charmander  -n "Yay!"
+pokemonsay -n -p Ditto "Yay!"
 
 read;clear;
 
 cat ../q*/*one*.sql
 $sm < ../q*/*one*.sql
-
+cat mewtwo
 read;clear;
 
 cat ../q*/types.sql
 read;
 $sm < ../q*/types.sql | less
+
+clear;
+
+cat ../q*/*all*.sql
+read;
+$sm< ../q*/*all*.sql | less
+clear;
+
+
+banner "Questions?" | sed "s/^/$s/g"
+cat pkm
+read;
+
+
