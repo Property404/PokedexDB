@@ -134,7 +134,6 @@ clear;
 
 
 banner "Questions?" | sed "s/^/$s/g"
-cat pkm
 read;
 
 
