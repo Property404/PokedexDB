@@ -247,7 +247,8 @@ def load_pokemon(db, no_of_pokemon=721, use_alt_names=False):
 		database.Column("pkm_name", "varchar(32)", not_null=True, character_set="utf8",	collate="utf8_unicode_ci", unique=True),
 		database.Column("pkm_category", "varchar(32)", not_null=True, character_set="utf8", collate="utf8_unicode_ci", unique=False),database.Column("pkm_description", "varchar({0})".format(DESCRIPTION_LENGTH), character_set="utf8",collate="utf8_unicode_ci", not_null=True),
 		database.Column("pkm_weight", "float", not_null=True),
-		database.Column("evolution_code", "smallint", not_null=False, fk=True, relation="pkm")
+		database.Column("evolution_code", "smallint", not_null=False, fk=True, relation="pkm"),
+		database.Column("evolution_condition", "varchar(128)", not_null=False)
 		])
 	learnset_table.set_columns([
 		database.Column("pkm_code", "smallint", pk=True, fk=True, relation="pkm", not_null=True),
@@ -273,7 +274,7 @@ def load_pokemon(db, no_of_pokemon=721, use_alt_names=False):
 				type2 = db.get_table("type").get_cell("type_code", i)
 
 		# Commit pokemon object to table
-		pkm_table.add_row([pkm.number, pkm.name if not use_alt_names else pkm.altname, pkm.category, pkm.description, str(pkm.weight), None])
+		pkm_table.add_row([pkm.number, pkm.name if not use_alt_names else pkm.altname, pkm.category, pkm.description, str(pkm.weight), None, None])
 		poketype_table.add_row([pkm.number, type1, 1])
 
 		# Commit pokemon type to table
