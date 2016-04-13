@@ -1,4 +1,4 @@
-SET @pokemon=150;
+SET @pokemon=26;
 
 SELECT pkm.pkm_code AS `#`, pkm.pkm_name AS Name, GROUP_CONCAT(`type`.type_name) AS `Type`, pkm.pkm_category AS Category, pkm.pkm_weight AS Weight
 	FROM pkm, poketype, `type`
