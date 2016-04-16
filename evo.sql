@@ -183,7 +183,7 @@ UPDATE pkm SET evolution_code=44,evolution_condition='use Sun Stone' WHERE pkm.p
 UPDATE pkm SET evolution_code=298,evolution_condition='Happiness' WHERE pkm.pkm_code=183;
 UPDATE pkm SET evolution_code=183,evolution_condition='Level 18' WHERE pkm.pkm_code=184;
 UPDATE pkm SET evolution_code=438,evolution_condition='Level up with Mimic learned' WHERE pkm.pkm_code=185;
-UPDATE pkm SET evolution_code=61,evolution_condition='Trade holding King's Rock' WHERE pkm.pkm_code=186;
+UPDATE pkm SET evolution_code=61,evolution_condition='Trade holding King\'s Rock' WHERE pkm.pkm_code=186;
 UPDATE pkm SET evolution_code=NULL,evolution_condition=NULL WHERE pkm.pkm_code=187;
 UPDATE pkm SET evolution_code=187,evolution_condition='Level 18' WHERE pkm.pkm_code=188;
 UPDATE pkm SET evolution_code=188,evolution_condition='Level 27' WHERE pkm.pkm_code=189;
@@ -196,7 +196,7 @@ UPDATE pkm SET evolution_code=194,evolution_condition='Level 20' WHERE pkm.pkm_c
 UPDATE pkm SET evolution_code=133,evolution_condition='Happiness during day' WHERE pkm.pkm_code=196;
 UPDATE pkm SET evolution_code=133,evolution_condition='Happiness at night' WHERE pkm.pkm_code=197;
 UPDATE pkm SET evolution_code=NULL,evolution_condition=NULL WHERE pkm.pkm_code=198;
-UPDATE pkm SET evolution_code=79,evolution_condition='Trade holding King's Rock' WHERE pkm.pkm_code=199;
+UPDATE pkm SET evolution_code=79,evolution_condition='Trade holding King\'s Rock' WHERE pkm.pkm_code=199;
 UPDATE pkm SET evolution_code=NULL,evolution_condition=NULL WHERE pkm.pkm_code=200;
 UPDATE pkm SET evolution_code=NULL,evolution_condition=NULL WHERE pkm.pkm_code=201;
 UPDATE pkm SET evolution_code=360,evolution_condition='Level 15' WHERE pkm.pkm_code=202;
@@ -263,9 +263,9 @@ UPDATE pkm SET evolution_code=261,evolution_condition='Level 18' WHERE pkm.pkm_c
 UPDATE pkm SET evolution_code=NULL,evolution_condition=NULL WHERE pkm.pkm_code=263;
 UPDATE pkm SET evolution_code=263,evolution_condition='Level 20' WHERE pkm.pkm_code=264;
 UPDATE pkm SET evolution_code=NULL,evolution_condition=NULL WHERE pkm.pkm_code=265;
-UPDATE pkm SET evolution_code=265,evolution_condition="'""Level 7" WHERE pkm.pkm_code=266;
+UPDATE pkm SET evolution_code=265,evolution_condition='\'""Level 7' WHERE pkm.pkm_code=266;
 UPDATE pkm SET evolution_code=266,evolution_condition='Level 10' WHERE pkm.pkm_code=267;
-UPDATE pkm SET evolution_code=265,evolution_condition="'""Level 7" WHERE pkm.pkm_code=268;
+UPDATE pkm SET evolution_code=265,evolution_condition='\'""Level 7' WHERE pkm.pkm_code=268;
 UPDATE pkm SET evolution_code=268,evolution_condition='Level 10' WHERE pkm.pkm_code=269;
 UPDATE pkm SET evolution_code=NULL,evolution_condition=NULL WHERE pkm.pkm_code=270;
 UPDATE pkm SET evolution_code=270,evolution_condition='Level 14' WHERE pkm.pkm_code=271;
