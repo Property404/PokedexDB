@@ -1,0 +1,701 @@
++----------+--------------------+--------------+--------------------+
+| pkm_code | Name               | Primary Type | Moves of Same Type |
++----------+--------------------+--------------+--------------------+
+|       31 | Drill Man          | poison       |                  1 |
+|       34 | Nidnidnidnid Man   | poison       |                  1 |
+|       36 | Clef Man           | fairy        |                  1 |
+|       38 | Ninet Man          | fire         |                  1 |
+|       59 | Legendary Man      | fire         |                  1 |
+|       62 | Polpol Man         | water        |                  1 |
+|       63 | Psi Man            | psychic      |                  1 |
+|      127 | Stag Beetle Man    | bug          |                  1 |
+|      132 | Transform Man      | normal       |                  1 |
+|      140 | Kab Man            | rock         |                  1 |
+|      141 | Kabkab Man         | rock         |                  1 |
+|      186 | Frog Man           | water        |                  1 |
+|      202 | Patient Man        | psychic      |                  1 |
+|      204 | Bagworm Man        | bug          |                  1 |
+|      205 | Forretre Man       | bug          |                  1 |
+|      207 | Fly Scorpion Man   | ground       |                  1 |
+|      235 | Painter Man        | normal       |                  1 |
+|      273 | Acorn Man          | grass        |                  1 |
+|      283 | Pond Skater Man    | bug          |                  1 |
+|      290 | Trainee Man        | bug          |                  1 |
+|      292 | Shed Man           | bug          |                  1 |
+|      318 | Savage Man         | water        |                  1 |
+|      319 | Brutal Man         | water        |                  1 |
+|      345 | Sea Lily Man       | rock         |                  1 |
+|      346 | Barnacle Man       | rock         |                  1 |
+|      360 | Bright Man         | psychic      |                  1 |
+|      385 | Wish Man           | steel        |                  1 |
+|      410 | Shield Man         | rock         |                  1 |
+|      411 | Baba Man           | rock         |                  1 |
+|      412 | Burm Man           | bug          |                  1 |
+|      413 | Wormworm Man       | bug          |                  1 |
+|      433 | Chingl Man         | psychic      |                  1 |
+|      472 | Fang Scorpion Man  | ground       |                  1 |
+|      512 | Thorn Monkey Man   | grass        |                  1 |
+|      514 | Ember Man          | fire         |                  1 |
+|      516 | Geyser Man         | water        |                  1 |
+|      597 | Thorn Seed Man     | grass        |                  1 |
+|       10 | Worm Man           | bug          |                  2 |
+|       13 | Hairy Bug Man      | bug          |                  2 |
+|       26 | Raich Man          | electric     |                  2 |
+|       41 | Bat Man            | poison       |                  2 |
+|       42 | Golb Man           | poison       |                  2 |
+|       48 | Insect Man         | bug          |                  2 |
+|       91 | Clo Man            | water        |                  2 |
+|      121 | Mysterious Man     | water        |                  2 |
+|      123 | Mantis Man         | bug          |                  2 |
+|      142 | Fossil Man         | rock         |                  2 |
+|      165 | Five Star Man      | bug          |                  2 |
+|      166 | Led Man            | bug          |                  2 |
+|      172 | Tiny Mouse Man     | electric     |                  2 |
+|      173 | Cleff Man          | fairy        |                  2 |
+|      175 | Spike Ball Man     | fairy        |                  2 |
+|      193 | Clear Wing Man     | bug          |                  2 |
+|      199 | Royal Man          | water        |                  2 |
+|      209 | Snubb Man          | fairy        |                  2 |
+|      210 | Granb Man          | fairy        |                  2 |
+|      212 | Sciz Man           | bug          |                  2 |
+|      214 | Single Horn Man    | bug          |                  2 |
+|      259 | Mar Man            | water        |                  2 |
+|      260 | Swampert Man       | water        |                  2 |
+|      265 | Wurmple Man        | bug          |                  2 |
+|      270 | Water Weed Man     | water        |                  2 |
+|      274 | Wily Man           | grass        |                  2 |
+|      278 | Seagull Man        | water        |                  2 |
+|      303 | Deceiver Man       | steel        |                  2 |
+|      314 | Illum Man          | bug          |                  2 |
+|      343 | Clay Doll Man      | ground       |                  2 |
+|      344 | Cla Man            | ground       |                  2 |
+|      371 | Rock Head Man      | dragon       |                  2 |
+|      372 | Endurance Man      | dragon       |                  2 |
+|      378 | Iceberg Man        | ice          |                  2 |
+|      380 | Eon Man            | dragon       |                  2 |
+|      401 | Cricket Man        | bug          |                  2 |
+|      408 | Head Butt Man      | rock         |                  2 |
+|      409 | Ramp Man           | rock         |                  2 |
+|      415 | Tiny Bee Man       | bug          |                  2 |
+|      518 | Drowsing Man       | psychic      |                  2 |
+|      541 | Leaf-Wrapped Man   | bug          |                  2 |
+|      543 | Centipede Man      | bug          |                  2 |
+|      544 | Curlipede Man      | bug          |                  2 |
+|      558 | Stone Home Man     | bug          |                  2 |
+|      598 | Thorn Pod Man      | grass        |                  2 |
+|      609 | Luring Man         | ghost        |                  2 |
+|      633 | Irate Man          | dark         |                  2 |
+|      634 | Zweil Man          | dark         |                  2 |
+|      635 | Hydreig Man        | dark         |                  2 |
+|      662 | Fletch Man         | fire         |                  2 |
+|      664 | Scatterdust Man    | bug          |                  2 |
+|      688 | Two-Handed Man     | rock         |                  2 |
+|      696 | Royal Heir Man     | rock         |                  2 |
+|      698 | Tundra Man         | rock         |                  2 |
+|      699 | Aur Man            | rock         |                  2 |
+|      704 | Soft Tissue Man    | dragon       |                  2 |
+|      705 | Sligg Man          | dragon       |                  2 |
+|      707 | Key Ring Man       | steel        |                  2 |
+|       15 | Poison Bee Man     | bug          |                  3 |
+|       16 | Tiny Bird Man      | normal       |                  3 |
+|       17 | Bird Man           | normal       |                  3 |
+|       18 | Pidge Man          | normal       |                  3 |
+|       21 | Spear Man          | normal       |                  3 |
+|       22 | Beak Man           | normal       |                  3 |
+|       29 | Poison Pin Man     | poison       |                  3 |
+|       30 | Nid Man            | poison       |                  3 |
+|       32 | Nidnid Man         | poison       |                  3 |
+|       33 | Nidnidnid Man      | poison       |                  3 |
+|       35 | Fairy Man          | fairy        |                  3 |
+|       79 | Dopey Man          | water        |                  3 |
+|      103 | Coconut Man        | grass        |                  3 |
+|      104 | Lonely Man         | ground       |                  3 |
+|      105 | Bone Keeper Man    | ground       |                  3 |
+|      111 | Spikes Man         | ground       |                  3 |
+|      112 | Rhydon Man         | ground       |                  3 |
+|      130 | Atrocious Man      | water        |                  3 |
+|      138 | Spiral Man         | rock         |                  3 |
+|      139 | Oma Man            | rock         |                  3 |
+|      151 | New Species Man    | psychic      |                  3 |
+|      158 | Big Jaw Man        | water        |                  3 |
+|      159 | Croc Man           | water        |                  3 |
+|      160 | Fer Man            | water        |                  3 |
+|      169 | Crob Man           | poison       |                  3 |
+|      176 | Happiness Man      | fairy        |                  3 |
+|      194 | Water Fish Man     | water        |                  3 |
+|      195 | Quag Man           | water        |                  3 |
+|      197 | Moonlight Man      | dark         |                  3 |
+|      208 | Iron Snake Man     | steel        |                  3 |
+|      213 | Mold Man           | bug          |                  3 |
+|      232 | Armor Man          | ground       |                  3 |
+|      238 | Kiss Man           | ice          |                  3 |
+|      245 | Aurora Man         | water        |                  3 |
+|      246 | Rock Skin Man      | rock         |                  3 |
+|      247 | Hard Shell Man     | rock         |                  3 |
+|      248 | Tyran Man          | rock         |                  3 |
+|      249 | Diving Man         | psychic      |                  3 |
+|      250 | Rainbow Man        | fire         |                  3 |
+|      256 | Young Fowl Man     | fire         |                  3 |
+|      258 | Mud Fish Man       | water        |                  3 |
+|      267 | Beaut Man          | bug          |                  3 |
+|      269 | Du Man             | bug          |                  3 |
+|      271 | Jolly Man          | water        |                  3 |
+|      275 | Wicked Man         | grass        |                  3 |
+|      284 | Eyeball Man        | bug          |                  3 |
+|      334 | Humming Man        | dragon       |                  3 |
+|      347 | Old Shrimp Man     | rock         |                  3 |
+|      348 | Plate Man          | rock         |                  3 |
+|      351 | Weather Man        | normal       |                  3 |
+|      366 | Clamperl Man       | water        |                  3 |
+|      369 | Longevity Man      | water        |                  3 |
+|      373 | Sal Man            | dragon       |                  3 |
+|      377 | Rock Peak Man      | rock         |                  3 |
+|      381 | Lat Man            | dragon       |                  3 |
+|      407 | Bouquet Man        | grass        |                  3 |
+|      422 | Sea Slug Man       | water        |                  3 |
+|      423 | Ga Man             | water        |                  3 |
+|      429 | Magical Man        | ghost        |                  3 |
+|      438 | Bonsai Man         | rock         |                  3 |
+|      440 | Playhouse Man      | normal       |                  3 |
+|      443 | Land Shark Man     | dragon       |                  3 |
+|      464 | Rhyper Man         | ground       |                  3 |
+|      469 | Ogre Darner Man    | bug          |                  3 |
+|      484 | Spatial Man        | water        |                  3 |
+|      494 | Victory Man        | psychic      |                  3 |
+|      513 | High Temp Man      | fire         |                  3 |
+|      545 | Megapede Man       | bug          |                  3 |
+|      547 | Windveiled Man     | grass        |                  3 |
+|      557 | Rock Inn Man       | bug          |                  3 |
+|      559 | Shedding Man       | dark         |                  3 |
+|      560 | Hoodlum Man        | dark         |                  3 |
+|      566 | First Bird Man     | rock         |                  3 |
+|      567 | Archeop Man        | rock         |                  3 |
+|      588 | Clamping Man       | bug          |                  3 |
+|      602 | EleFish Man        | electric     |                  3 |
+|      604 | Eelektreelektr Man | electric     |                  3 |
+|      616 | Snail Man          | bug          |                  3 |
+|      622 | Automaton Man      | ground       |                  3 |
+|      623 | Gol Man            | ground       |                  3 |
+|      632 | Iron Ant Man       | bug          |                  3 |
+|      638 | Iron Will Man      | steel        |                  3 |
+|      639 | Cavern Man         | rock         |                  3 |
+|      640 | Grassland Man      | grass        |                  3 |
+|      656 | Bubble Frog Man    | water        |                  3 |
+|      657 | Frogfrog Man       | water        |                  3 |
+|      663 | Scorching Man      | fire         |                  3 |
+|      684 | Cotton Candy Man   | fairy        |                  3 |
+|      685 | Meringue Man       | fairy        |                  3 |
+|      689 | Collective Man     | rock         |                  3 |
+|      706 | Goodr Man          | dragon       |                  3 |
+|      716 | Life Man           | fairy        |                  3 |
+|      721 | Steam Man          | fire         |                  3 |
+|       12 | Butterfly Man      | bug          |                  4 |
+|       46 | Mushroom Man       | bug          |                  4 |
+|       47 | Par Man            | bug          |                  4 |
+|       69 | Bell Man           | grass        |                  4 |
+|       70 | Flycatcher Man     | grass        |                  4 |
+|       72 | Jellyfish Man      | water        |                  4 |
+|       73 | Tent Man           | water        |                  4 |
+|       80 | Hermit Crab Man    | water        |                  4 |
+|       98 | River Crab Man     | water        |                  4 |
+|       99 | Pincer Man         | water        |                  4 |
+|      120 | Star Shape Man     | water        |                  4 |
+|      124 | Human Shape Man    | ice          |                  4 |
+|      174 | Igglybuff Man      | normal       |                  4 |
+|      185 | Imitation Man      | rock         |                  4 |
+|      222 | Coral Man          | water        |                  4 |
+|      227 | Armor Bird Man     | steel        |                  4 |
+|      251 | Time Travel Man    | psychic      |                  4 |
+|      252 | Wood Gecko Man     | grass        |                  4 |
+|      253 | Grov Man           | grass        |                  4 |
+|      254 | Forest Man         | grass        |                  4 |
+|      255 | Chick Man          | fire         |                  4 |
+|      291 | Ninja Man          | bug          |                  4 |
+|      298 | Polka Dot Man      | normal       |                  4 |
+|      301 | Prim Man           | normal       |                  4 |
+|      313 | Firefly Man        | bug          |                  4 |
+|      322 | Numb Man           | fire         |                  4 |
+|      323 | Eruption Man       | fire         |                  4 |
+|      337 | Meteorite Man      | rock         |                  4 |
+|      338 | Solr Man           | rock         |                  4 |
+|      341 | Ruffian Man        | water        |                  4 |
+|      342 | Rogue Man          | water        |                  4 |
+|      370 | Rendezvous Man     | water        |                  4 |
+|      375 | Iron Claw Man      | steel        |                  4 |
+|      376 | Iron Leg Man       | steel        |                  4 |
+|      379 | Iron Man           | steel        |                  4 |
+|      384 | Sky High Man       | dragon       |                  4 |
+|      390 | Chimp Man          | fire         |                  4 |
+|      391 | Playful Man        | fire         |                  4 |
+|      392 | Infern Man         | fire         |                  4 |
+|      406 | Bud Man            | grass        |                  4 |
+|      414 | Moth Man           | bug          |                  4 |
+|      425 | Drifl Man          | ghost        |                  4 |
+|      434 | Skunk Man          | poison       |                  4 |
+|      435 | Skunt Man          | poison       |                  4 |
+|      436 | Bronze Man         | steel        |                  4 |
+|      437 | Bronze Bell Man    | steel        |                  4 |
+|      444 | Cave Man           | dragon       |                  4 |
+|      445 | Garch Man          | dragon       |                  4 |
+|      447 | Emanation Man      | fighting     |                  4 |
+|      455 | Bug Catcher Man    | grass        |                  4 |
+|      459 | Frost Tree Man     | grass        |                  4 |
+|      460 | Abom Man           | grass        |                  4 |
+|      483 | Temporal Man       | steel        |                  4 |
+|      486 | Colossal Man       | normal       |                  4 |
+|      491 | Pitch-Black Man    | dark         |                  4 |
+|      511 | Grass Monkey Man   | grass        |                  4 |
+|      515 | Spray Man          | water        |                  4 |
+|      550 | Hostile Man        | water        |                  4 |
+|      573 | Scarf Man          | normal       |                  4 |
+|      589 | Cavalry Man        | bug          |                  4 |
+|      617 | Shell Out Man      | bug          |                  4 |
+|      621 | Drudd Man          | dragon       |                  4 |
+|      636 | Torch Man          | bug          |                  4 |
+|      643 | Vast White Man     | dragon       |                  4 |
+|      644 | Deep Black Man     | dragon       |                  4 |
+|      646 | Boundary Man       | dragon       |                  4 |
+|      647 | Colt Man           | water        |                  4 |
+|      650 | Spiny Nut Man      | grass        |                  4 |
+|      658 | Gren Man           | water        |                  4 |
+|      666 | Scale Man          | bug          |                  4 |
+|      667 | Lion Cub Man       | fire         |                  4 |
+|      668 | Pyroar Man         | fire         |                  4 |
+|      677 | Restraint Man      | psychic      |                  4 |
+|      679 | Sword Man          | steel        |                  4 |
+|      680 | Doubl Man          | steel        |                  4 |
+|      681 | Royal Sword Man    | steel        |                  4 |
+|      690 | Mock Kelp Man      | poison       |                  4 |
+|      691 | Dragdragdrag Man   | poison       |                  4 |
+|      697 | Despot Man         | rock         |                  4 |
+|      718 | Order Man          | dragon       |                  4 |
+|       27 | Sand Man           | ground       |                  5 |
+|       28 | Sandsand Man       | ground       |                  5 |
+|       40 | Wiggl Man          | normal       |                  5 |
+|       49 | Poison Moth Man    | bug          |                  5 |
+|       87 | Dewg Man           | water        |                  5 |
+|      116 | Dragon Man         | water        |                  5 |
+|      117 | Seadr Man          | water        |                  5 |
+|      118 | Goldfish Man       | water        |                  5 |
+|      119 | Seak Man           | water        |                  5 |
+|      131 | Transport Man      | water        |                  5 |
+|      134 | Bubble Jet Man     | water        |                  5 |
+|      135 | Lightning Man      | electric     |                  5 |
+|      136 | Flare Man          | fire         |                  5 |
+|      146 | Moltre Man         | fire         |                  5 |
+|      152 | Leaf Man           | grass        |                  5 |
+|      153 | Ba Man             | grass        |                  5 |
+|      167 | String Spit Man    | bug          |                  5 |
+|      170 | Angler Man         | water        |                  5 |
+|      171 | Light Man          | water        |                  5 |
+|      196 | Espeon Man         | psychic      |                  5 |
+|      211 | Qwilf Man          | water        |                  5 |
+|      218 | Lava Man           | fire         |                  5 |
+|      219 | Magc Man           | fire         |                  5 |
+|      220 | Pig Man            | ice          |                  5 |
+|      221 | Swine Man          | ice          |                  5 |
+|      223 | Jet Man            | water        |                  5 |
+|      224 | Octiller Man       | water        |                  5 |
+|      226 | Kite Man           | water        |                  5 |
+|      230 | Kingdr Man         | water        |                  5 |
+|      243 | Thunder Man        | electric     |                  5 |
+|      257 | Blaze Man          | fire         |                  5 |
+|      276 | Tiny Swallow Man   | normal       |                  5 |
+|      277 | Swallow Man        | normal       |                  5 |
+|      286 | Brel Man           | grass        |                  5 |
+|      302 | Sable Man          | dark         |                  5 |
+|      307 | Meditate Man       | fighting     |                  5 |
+|      308 | Med Man            | fighting     |                  5 |
+|      339 | Whiskers Man       | water        |                  5 |
+|      340 | Whi Man            | water        |                  5 |
+|      359 | Disaster Man       | dark         |                  5 |
+|      383 | Continent Man      | ground       |                  5 |
+|      403 | Flash Man          | electric     |                  5 |
+|      404 | Spark Man          | electric     |                  5 |
+|      416 | Beehive Man        | bug          |                  5 |
+|      417 | EleSquirrel Man    | electric     |                  5 |
+|      420 | Cherry Man         | grass        |                  5 |
+|      426 | Blimp Man          | ghost        |                  5 |
+|      442 | Forbidden Man      | ghost        |                  5 |
+|      449 | Hippo Man          | ground       |                  5 |
+|      450 | Heavyweight Man    | ground       |                  5 |
+|      451 | Scorpion Man       | poison       |                  5 |
+|      452 | Ogre Scorpion Man  | poison       |                  5 |
+|      453 | Toxic Mouth Man    | poison       |                  5 |
+|      454 | Tox Man            | poison       |                  5 |
+|      458 | Mant Man           | water        |                  5 |
+|      471 | Fresh Snow Man     | ice          |                  5 |
+|      473 | Twin Tusk Man      | ice          |                  5 |
+|      475 | Blade Man          | psychic      |                  5 |
+|      478 | Snow Land Man      | ice          |                  5 |
+|      482 | Willpower Man      | psychic      |                  5 |
+|      485 | Lava Dome Man      | fire         |                  5 |
+|      498 | Fire Pig Man       | fire         |                  5 |
+|      499 | Pign Man           | fire         |                  5 |
+|      500 | Mega Fire Pig Man  | fire         |                  5 |
+|      540 | Sewing Man         | bug          |                  5 |
+|      542 | Nurturing Man      | bug          |                  5 |
+|      549 | Flowering Man      | grass        |                  5 |
+|      551 | Desert Croc Man    | ground       |                  5 |
+|      552 | Krok Man           | ground       |                  5 |
+|      553 | Intimidation Man   | ground       |                  5 |
+|      554 | Zen Charm Man      | fire         |                  5 |
+|      555 | Blazing Man        | fire         |                  5 |
+|      599 | Gear Man           | steel        |                  5 |
+|      600 | Klang Man          | steel        |                  5 |
+|      601 | Klinkl Man         | steel        |                  5 |
+|      613 | Chill Man          | ice          |                  5 |
+|      618 | Trap Man           | ground       |                  5 |
+|      624 | Sharp Blade Man    | dark         |                  5 |
+|      625 | Sword Blade Man    | dark         |                  5 |
+|      631 | Anteater Man       | fire         |                  5 |
+|      641 | Cyclone Man        | flying       |                  5 |
+|      642 | Bolt Strike Man    | electric     |                  5 |
+|      645 | Abundance Man      | ground       |                  5 |
+|      649 | Paleozoic Man      | bug          |                  5 |
+|      651 | Spiny Armor Man    | grass        |                  5 |
+|      652 | Che Man            | grass        |                  5 |
+|      674 | Panch Man          | fighting     |                  5 |
+|      686 | Revolving Man      | dark         |                  5 |
+|      687 | Overturning Man    | dark         |                  5 |
+|      695 | Hel Man            | electric     |                  5 |
+|      700 | Intertwining Man   | fairy        |                  5 |
+|      708 | Stump Man          | ghost        |                  5 |
+|      710 | Pumpkin Man        | ghost        |                  5 |
+|      717 | Destruction Man    | dark         |                  5 |
+|        4 | Lizard Man         | fire         |                  6 |
+|        5 | Flame Man          | fire         |                  6 |
+|       45 | Flower Man         | grass        |                  6 |
+|       54 | Duck Man           | water        |                  6 |
+|       56 | Pig Monkey Man     | fighting     |                  6 |
+|       57 | Prime Man          | fighting     |                  6 |
+|       60 | Tadpole Man        | water        |                  6 |
+|       61 | Pol Man            | water        |                  6 |
+|       71 | Victreebel Man     | grass        |                  6 |
+|       76 | Megaton Man        | rock         |                  6 |
+|       83 | Wild Duck Man      | normal       |                  6 |
+|       86 | Sea Lion Man       | water        |                  6 |
+|       90 | Bivalve Man        | water        |                  6 |
+|      102 | Egg Man            | grass        |                  6 |
+|      109 | Poison Gas Man     | poison       |                  6 |
+|      110 | Weez Man           | poison       |                  6 |
+|      145 | Zapd Man           | electric     |                  6 |
+|      147 | Drat Man           | dragon       |                  6 |
+|      148 | Drag Man           | dragon       |                  6 |
+|      149 | Dragdrag Man       | dragon       |                  6 |
+|      163 | Owl Man            | normal       |                  6 |
+|      164 | Noct Man           | normal       |                  6 |
+|      179 | Wool Man           | electric     |                  6 |
+|      180 | Flaaff Man         | electric     |                  6 |
+|      182 | Bellbell Man       | grass        |                  6 |
+|      200 | Screech Man        | ghost        |                  6 |
+|      203 | Long Neck Man      | normal       |                  6 |
+|      215 | Sharp Claw Man     | dark         |                  6 |
+|      234 | Big Horn Man       | normal       |                  6 |
+|      261 | Bite Man           | dark         |                  6 |
+|      279 | Water Bird Man     | water        |                  6 |
+|      299 | Compass Man        | rock         |                  6 |
+|      329 | Vibration Man      | ground       |                  6 |
+|      330 | Flygon Man         | ground       |                  6 |
+|      331 | Cactus Man         | grass        |                  6 |
+|      357 | Fruit Man          | grass        |                  6 |
+|      358 | Wind Chime Man     | psychic      |                  6 |
+|      363 | Clap Man           | ice          |                  6 |
+|      364 | Ball Roll Man      | ice          |                  6 |
+|      367 | Deep Sea Man       | water        |                  6 |
+|      393 | Penguin Man        | water        |                  6 |
+|      394 | Prinpl Man         | water        |                  6 |
+|      395 | Emperor Man        | water        |                  6 |
+|      402 | Kricket Man        | bug          |                  6 |
+|      405 | Gleam Eyes Man     | electric     |                  6 |
+|      418 | Sea Weasel Man     | water        |                  6 |
+|      419 | Floatzel Man       | water        |                  6 |
+|      421 | Blossom Man        | grass        |                  6 |
+|      448 | Aura Man           | fighting     |                  6 |
+|      456 | Wing Fish Man      | water        |                  6 |
+|      457 | Neon Man           | water        |                  6 |
+|      470 | Verdant Man        | grass        |                  6 |
+|      476 | Prob Man           | rock         |                  6 |
+|      479 | Plasma Man         | electric     |                  6 |
+|      480 | Knowledge Man      | psychic      |                  6 |
+|      481 | Me Man             | psychic      |                  6 |
+|      487 | Renegade Man       | ghost        |                  6 |
+|      488 | Lunar Man          | psychic      |                  6 |
+|      519 | Tiny Pigeon Man    | normal       |                  6 |
+|      520 | Wild Pigeon Man    | normal       |                  6 |
+|      521 | Proud Man          | normal       |                  6 |
+|      522 | Electrified Man    | electric     |                  6 |
+|      524 | Mantle Man         | rock         |                  6 |
+|      529 | Drilb Man          | ground       |                  6 |
+|      535 | Tympole Man        | water        |                  6 |
+|      536 | Palp Man           | water        |                  6 |
+|      537 | Sei Man            | water        |                  6 |
+|      580 | Ducklett Man       | water        |                  6 |
+|      581 | White Bird Man     | water        |                  6 |
+|      585 | Season Man         | normal       |                  6 |
+|      586 | Saw Man            | normal       |                  6 |
+|      607 | Candle Man         | ghost        |                  6 |
+|      608 | Lamp Man           | ghost        |                  6 |
+|      610 | Tusk Man           | dragon       |                  6 |
+|      611 | Axe Jaw Man        | dragon       |                  6 |
+|      612 | Hax Man            | dragon       |                  6 |
+|      614 | Freezing Man       | ice          |                  6 |
+|      629 | Diapered Man       | dark         |                  6 |
+|      630 | Bone Vulture Man   | dark         |                  6 |
+|      637 | Volc Man           | bug          |                  6 |
+|      676 | Poodle Man         | normal       |                  6 |
+|      703 | Jewel Man          | rock         |                  6 |
+|      709 | Elder Tree Man     | ghost        |                  6 |
+|      711 | Gourge Man         | ghost        |                  6 |
+|      712 | Ice Chunk Man      | ice          |                  6 |
+|      713 | Aval Man           | ice          |                  6 |
+|      719 | Dianc Man          | rock         |                  6 |
+|        1 | Seed Man           | grass        |                  7 |
+|        2 | Ivysaur Man        | grass        |                  7 |
+|        7 | Tiny Turtle Man    | water        |                  7 |
+|        8 | Turtle Man         | water        |                  7 |
+|        9 | Shellfish Man      | water        |                  7 |
+|       23 | Snake Man          | poison       |                  7 |
+|       24 | Cobra Man          | poison       |                  7 |
+|       37 | Fox Man            | fire         |                  7 |
+|       43 | Weed Man           | grass        |                  7 |
+|       55 | Gold Man           | water        |                  7 |
+|       58 | Puppy Man          | fire         |                  7 |
+|       74 | Rock Man           | rock         |                  7 |
+|       75 | Graveler Man       | rock         |                  7 |
+|       77 | Fire Horse Man     | fire         |                  7 |
+|       78 | Rap Man            | fire         |                  7 |
+|       81 | Magnet Man         | electric     |                  7 |
+|       88 | Sludge Man         | poison       |                  7 |
+|      100 | Ball Man           | electric     |                  7 |
+|      154 | Herb Man           | grass        |                  7 |
+|      155 | Fire Mouse Man     | fire         |                  7 |
+|      156 | Volcano Man        | fire         |                  7 |
+|      157 | Typhlo Man         | fire         |                  7 |
+|      168 | Long Leg Man       | bug          |                  7 |
+|      228 | Dark Man           | dark         |                  7 |
+|      229 | Hound Man          | dark         |                  7 |
+|      237 | Handstand Man      | fighting     |                  7 |
+|      287 | Slacker Man        | normal       |                  7 |
+|      296 | Guts Man           | fighting     |                  7 |
+|      297 | Arm Thrust Man     | fighting     |                  7 |
+|      309 | Electrelectr Man   | electric     |                  7 |
+|      311 | Cheering Man       | electric     |                  7 |
+|      312 | Min Man            | electric     |                  7 |
+|      320 | Ball Whale Man     | water        |                  7 |
+|      321 | Float Whale Man    | water        |                  7 |
+|      324 | Coal Man           | fire         |                  7 |
+|      325 | Bounce Man         | psychic      |                  7 |
+|      326 | Manipulate Man     | psychic      |                  7 |
+|      332 | Scarecrow Man      | grass        |                  7 |
+|      335 | Cat Ferret Man     | normal       |                  7 |
+|      350 | Tender Man         | water        |                  7 |
+|      355 | Requiem Man        | ghost        |                  7 |
+|      361 | Snow Hat Man       | ice          |                  7 |
+|      365 | Ice Break Man      | ice          |                  7 |
+|      368 | South Sea Man      | water        |                  7 |
+|      382 | Sea Basin Man      | water        |                  7 |
+|      387 | Tiny Leaf Man      | grass        |                  7 |
+|      388 | Grove Man          | grass        |                  7 |
+|      396 | Starling Man       | normal       |                  7 |
+|      397 | Star Man           | normal       |                  7 |
+|      398 | Predator Man       | normal       |                  7 |
+|      430 | Big Boss Man       | dark         |                  7 |
+|      474 | Porpor Man         | normal       |                  7 |
+|      495 | Grass Snake Man    | grass        |                  7 |
+|      496 | Serv Man           | grass        |                  7 |
+|      497 | Regal Man          | grass        |                  7 |
+|      501 | Sea Otter Man      | water        |                  7 |
+|      502 | Discipline Man     | water        |                  7 |
+|      503 | Formidable Man     | water        |                  7 |
+|      523 | Zeb Man            | electric     |                  7 |
+|      525 | Ore Man            | rock         |                  7 |
+|      526 | Compressed Man     | rock         |                  7 |
+|      527 | Woob Man           | psychic      |                  7 |
+|      528 | Courting Man       | psychic      |                  7 |
+|      530 | Subterrene Man     | ground       |                  7 |
+|      532 | Muscular Man       | fighting     |                  7 |
+|      533 | Gurd Man           | fighting     |                  7 |
+|      534 | Conkeld Man        | fighting     |                  7 |
+|      564 | Prototurtle Man    | water        |                  7 |
+|      565 | Carr Man           | water        |                  7 |
+|      590 | Foong Man          | grass        |                  7 |
+|      591 | Amoong Man         | grass        |                  7 |
+|      594 | Caring Man         | water        |                  7 |
+|      595 | Attaching Man      | bug          |                  7 |
+|      603 | Eelektr Man        | electric     |                  7 |
+|      620 | Mien Man           | fighting     |                  7 |
+|      627 | Eaglet Man         | normal       |                  7 |
+|      628 | Valiant Man        | normal       |                  7 |
+|      648 | Melody Man         | normal       |                  7 |
+|      653 | Fennek Man         | fire         |                  7 |
+|      654 | Braixen Man        | fire         |                  7 |
+|      661 | Tiny Robin Man     | normal       |                  7 |
+|      675 | Daunting Man       | fighting     |                  7 |
+|      682 | Perfume Man        | fairy        |                  7 |
+|      694 | Generator Man      | electric     |                  7 |
+|        6 | Char Man           | fire         |                  8 |
+|       19 | Mouse Man          | normal       |                  8 |
+|       44 | Gloom Man          | grass        |                  8 |
+|       82 | Magnetmagnet Man   | electric     |                  8 |
+|       89 | Muk Man            | poison       |                  8 |
+|       95 | Rock Snake Man     | rock         |                  8 |
+|      101 | Electr Man         | electric     |                  8 |
+|      106 | Kicking Man        | fighting     |                  8 |
+|      125 | Electric Man       | electric     |                  8 |
+|      126 | Spitfire Man       | fire         |                  8 |
+|      137 | Virtual Man        | normal       |                  8 |
+|      144 | Freeze Man         | ice          |                  8 |
+|      177 | Nat Man            | psychic      |                  8 |
+|      178 | Mystic Man         | psychic      |                  8 |
+|      183 | Aqua Mouse Man     | water        |                  8 |
+|      184 | Aqua Rabbit Man    | water        |                  8 |
+|      198 | Darkness Man       | dark         |                  8 |
+|      216 | Little Bear Man    | normal       |                  8 |
+|      239 | Elek Man           | electric     |                  8 |
+|      240 | Live Coal Man      | fire         |                  8 |
+|      244 | Entei Man          | fire         |                  8 |
+|      262 | Might Man          | dark         |                  8 |
+|      285 | Shroom Man         | grass        |                  8 |
+|      288 | Wild Monkey Man    | normal       |                  8 |
+|      289 | Lazy Man           | normal       |                  8 |
+|      304 | Iron Armor Man     | steel        |                  8 |
+|      305 | Lair Man           | steel        |                  8 |
+|      306 | Aggron Man         | steel        |                  8 |
+|      310 | Discharge Man      | electric     |                  8 |
+|      316 | Stomach Man        | poison       |                  8 |
+|      317 | Poison Bag Man     | poison       |                  8 |
+|      328 | Ant Pit Man        | ground       |                  8 |
+|      336 | Fang Snake Man     | poison       |                  8 |
+|      353 | Puppet Man         | ghost        |                  8 |
+|      354 | Marionette Man     | ghost        |                  8 |
+|      356 | Beckon Man         | ghost        |                  8 |
+|      389 | Torterr Man        | grass        |                  8 |
+|      399 | Plump Mouse Man    | normal       |                  8 |
+|      400 | Beaver Man         | normal       |                  8 |
+|      431 | Catty Man          | normal       |                  8 |
+|      467 | Blast Man          | fire         |                  8 |
+|      477 | Gripper Man        | ghost        |                  8 |
+|      489 | Sea Drifter Man    | water        |                  8 |
+|      490 | Seafaring Man      | water        |                  8 |
+|      492 | Gratitude Man      | grass        |                  8 |
+|      509 | Devious Man        | dark         |                  8 |
+|      538 | Judo Man           | fighting     |                  8 |
+|      562 | Spirit Man         | ghost        |                  8 |
+|      563 | Coffin Man         | ghost        |                  8 |
+|      574 | Fixation Man       | psychic      |                  8 |
+|      575 | Goth Man           | psychic      |                  8 |
+|      576 | Astral Body Man    | psychic      |                  8 |
+|      582 | Van Man            | ice          |                  8 |
+|      583 | Icy Snow Man       | ice          |                  8 |
+|      587 | Sky Squirrel Man   | electric     |                  8 |
+|      592 | Floating Man       | water        |                  8 |
+|      593 | Jell Man           | water        |                  8 |
+|      596 | EleSpider Man      | bug          |                  8 |
+|      615 | Crystallizing Man  | ice          |                  8 |
+|      619 | Martial Arts Man   | fighting     |                  8 |
+|      655 | Delph Man          | fire         |                  8 |
+|      683 | Fragrance Man      | fairy        |                  8 |
+|      692 | Water Gun Man      | water        |                  8 |
+|      693 | Howitzer Man       | water        |                  8 |
+|        3 | Ven Man            | grass        |                  9 |
+|       25 | Pik Man            | electric     |                  9 |
+|       50 | Mole Man           | ground       |                  9 |
+|       52 | Scratch Cat Man    | normal       |                  9 |
+|       53 | Classy Cat Man     | normal       |                  9 |
+|       84 | Twin Bird Man      | normal       |                  9 |
+|       85 | Triple Bird Man    | normal       |                  9 |
+|       92 | Gas Man            | ghost        |                  9 |
+|       96 | Hypnosis Man       | psychic      |                  9 |
+|       97 | Hypno Man          | psychic      |                  9 |
+|      107 | Punching Man       | fighting     |                  9 |
+|      114 | Vine Man           | grass        |                  9 |
+|      187 | Cottonweed Man     | grass        |                  9 |
+|      188 | Skipl Man          | grass        |                  9 |
+|      189 | Jumpl Man          | grass        |                  9 |
+|      190 | Long Tail Man      | normal       |                  9 |
+|      233 | Por Man            | normal       |                  9 |
+|      241 | Milk Cow Man       | normal       |                  9 |
+|      327 | Spot Panda Man     | normal       |                  9 |
+|      333 | Cotton Bird Man    | normal       |                  9 |
+|      352 | Color Swap Man     | normal       |                  9 |
+|      362 | Face Man           | ice          |                  9 |
+|      386 | DNA Man            | psychic      |                  9 |
+|      424 | Ambip Man          | normal       |                  9 |
+|      439 | Mime Man           | psychic      |                  9 |
+|      441 | Music Note Man     | normal       |                  9 |
+|      462 | Magnet Area Man    | electric     |                  9 |
+|      465 | Tangr Man          | grass        |                  9 |
+|      510 | Cruel Man          | dark         |                  9 |
+|      568 | Trash Bag Man      | poison       |                  9 |
+|      569 | Trash Heap Man     | poison       |                  9 |
+|      577 | Cell Man           | psychic      |                  9 |
+|      578 | Mitosis Man        | psychic      |                  9 |
+|      579 | Multiplying Man    | psychic      |                  9 |
+|      584 | Snowstorm Man      | ice          |                  9 |
+|      659 | Digging Man        | normal       |                  9 |
+|      660 | Digger Man         | normal       |                  9 |
+|       20 | Rat Man            | normal       |                 10 |
+|       93 | Haunter Man        | ghost        |                 10 |
+|       94 | Shadow Man         | ghost        |                 10 |
+|      115 | Parent Man         | normal       |                 10 |
+|      128 | Wild Bull Man      | normal       |                 10 |
+|      143 | Sleeping Man       | normal       |                 10 |
+|      150 | Genetic Man        | psychic      |                 10 |
+|      181 | Amphar Man         | electric     |                 10 |
+|      206 | Land Snake Man     | normal       |                 10 |
+|      217 | Hibernator Man     | normal       |                 10 |
+|      263 | Tiny Raccoon Man   | normal       |                 10 |
+|      280 | Feeling Man        | psychic      |                 10 |
+|      281 | Emotion Man        | psychic      |                 10 |
+|      293 | Whisper Man        | normal       |                 10 |
+|      294 | Big Voice Man      | normal       |                 10 |
+|      432 | Tiger Cat Man      | normal       |                 10 |
+|      466 | Thunderbolt Man    | electric     |                 10 |
+|      504 | Patr Man           | normal       |                 10 |
+|      505 | Lookout Man        | normal       |                 10 |
+|      506 | Lill Man           | normal       |                 10 |
+|      507 | Loyal Dog Man      | normal       |                 10 |
+|      508 | Big-Hearted Man    | normal       |                 10 |
+|      539 | Karate Man         | fighting     |                 10 |
+|      546 | Cotton Puff Man    | grass        |                 10 |
+|      561 | Avianoid Man       | psychic      |                 10 |
+|      570 | Tricky Fox Man     | dark         |                 10 |
+|      626 | Bash Buffalo Man   | normal       |                 10 |
+|       39 | Balloon Man        | normal       |                 11 |
+|       51 | Dugtr Man          | ground       |                 11 |
+|       66 | Superpower Man     | fighting     |                 11 |
+|       67 | Mach Man           | fighting     |                 11 |
+|       68 | Machmach Man       | fighting     |                 11 |
+|      108 | Licking Man        | normal       |                 11 |
+|      161 | Scout Man          | normal       |                 11 |
+|      162 | Long Body Man      | normal       |                 11 |
+|      191 | Sunkern Man        | grass        |                 11 |
+|      264 | Rushing Man        | normal       |                 11 |
+|      282 | Embrace Man        | psychic      |                 11 |
+|      427 | Rabbit Man         | normal       |                 11 |
+|      428 | Lop Man            | normal       |                 11 |
+|      461 | Weav Man           | dark         |                 11 |
+|      463 | Lick Man           | normal       |                 11 |
+|      548 | Bulb Man           | grass        |                 11 |
+|      571 | Illusion Fox Man   | dark         |                 11 |
+|      122 | Barrier Man        | psychic      |                 12 |
+|      295 | Loud Noise Man     | normal       |                 12 |
+|      315 | Thorn Man          | grass        |                 12 |
+|      517 | Dream Eater Man    | psychic      |                 12 |
+|      556 | Marmar Man         | grass        |                 12 |
+|      605 | Cerebral Man       | psychic      |                 12 |
+|      606 | Behee Man          | psychic      |                 12 |
+|      678 | Constraint Man     | psychic      |                 12 |
+|       64 | Kad Man            | psychic      |                 13 |
+|       65 | Alak Man           | psychic      |                 13 |
+|      113 | Chan Man           | normal       |                 13 |
+|      133 | Evolution Man      | normal       |                 13 |
+|      192 | Sun Man            | grass        |                 13 |
+|      242 | Bli Man            | normal       |                 13 |
+|      446 | Big Eater Man      | normal       |                 13 |
+|      300 | Kitten Man         | normal       |                 14 |
+|      531 | Hearing Man        | normal       |                 14 |
+|      572 | Chinchilla Man     | normal       |                 14 |
+|      720 | Mischief Man       | psychic      |                 14 |
++----------+--------------------+--------------+--------------------+
